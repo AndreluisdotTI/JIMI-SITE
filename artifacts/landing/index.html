@@ -319,6 +319,15 @@ function App(){
   const [name,setName]=useState('');
   const [phone,setPhone]=useState('');
   const [submitted,setSubmitted]=useState(false);
+  const [modalOpen,setModalOpen]=useState(false);
+  const [mqStep,setMqStep]=useState(0);
+  const [mqProfile,setMqProfile]=useState('');
+  const [mqPdv,setMqPdv]=useState('');
+  const [mqFat,setMqFat]=useState('');
+  const [mqBalanca,setMqBalanca]=useState('');
+  const [mqPhone,setMqPhone]=useState('');
+  const [mqDisq,setMqDisq]=useState(false);
+  const [mqDone,setMqDone]=useState(false);
   const [tweaks,setTweaks]=useState(TWEAK_DEFAULTS);
   const [twOn,setTwOn]=useState(false);
 
@@ -367,8 +376,8 @@ function App(){
         <li><a href="#cta-s">Contato</a></li>
       </ul>
       <div className="nav-r">
-        <button className="btn-out">Ver Demonstração</button>
-        <button className="btn-bl" onClick={()=>scroll('cta-s')}>Falar com Consultor</button>
+        <button className="btn-out" onClick={()=>setModalOpen(true)}>Ver Demonstração</button>
+        <button className="btn-bl" onClick={()=>setModalOpen(true)}>Falar com Consultor</button>
       </div>
     </nav>
 
@@ -381,7 +390,7 @@ function App(){
         <h1>Menos fila.<br/><span>Mais sabor.</span><br/>Mais controle.</h1>
         <p className="hero-sub">O JiMi Food centraliza toda a operação do seu restaurante em um único ecossistema — do pedido à produção, do caixa à fidelização. Tudo integrado, tudo automático.</p>
         <div className="hero-ctas">
-          <button className="btn-wh" onClick={()=>scroll('cta-s')}>Quero uma Demonstração</button>
+          <button className="btn-wh" onClick={()=>setModalOpen(true)}>Quero uma Demonstração</button>
           <button className="btn-wh-out" onClick={()=>scroll('sol-s')}>Conhecer as Soluções →</button>
         </div>
         <div className="hero-stats">
@@ -635,19 +644,9 @@ function App(){
         <div className="cta-eyebrow rv"><div className="hero-dot"/>Demonstração Gratuita</div>
         <h2 className="rv d1">Pronto para transformar<br/>seu <em>restaurante</em>?</h2>
         <p className="rv d2">Agende uma demonstração gratuita e veja o JiMi Food funcionando na prática. Sem compromisso, sem contrato.</p>
-        {!submitted?(
-          <form className="cta-form rv d3" onSubmit={e=>{e.preventDefault();if(name&&phone)setSubmitted(true);}}>
-            <input className="cta-inp" placeholder="Seu nome" value={name} onChange={e=>setName(e.target.value)} required/>
-            <input className="cta-inp" placeholder="WhatsApp com DDD" value={phone} onChange={e=>setPhone(e.target.value)} required/>
-            <button type="submit" className="btn-bl" style={{whiteSpace:'nowrap',padding:'.875rem 1.75rem'}}>Quero uma Demo →</button>
-          </form>
-        ):(
-          <div className="success-box rv">
-            <div style={{fontSize:'1.5rem',marginBottom:'.5rem',color:'var(--blue)'}}>✓</div>
-            <h3>Recebemos seu contato!</h3>
-            <p>Nossa equipe entrará em contato via WhatsApp em breve.</p>
-          </div>
-        )}
+        <div className="rv d3" style={{marginBottom:'2rem'}}>
+          <button className="btn-bl" style={{padding:'1rem 2.5rem',fontSize:'1.05rem',borderRadius:12}} onClick={()=>setModalOpen(true)}>Quero uma Demonstração Gratuita →</button>
+        </div>
         <div className="cta-trust rv d4">
           {['Sem contrato de fidelidade','Implantação assistida','Suporte especializado'].map(t=>(
             <div className="cta-trust-item" key={t}>
@@ -658,6 +657,173 @@ function App(){
         </div>
       </div>
     </section>
+
+    {/* SUPPORT SECTION */}
+    <section className="sup-sec" id="suporte-s">
+      <div className="rv-l">
+        <div className="sup-eyebrow">Suporte humanizado</div>
+        <h2>Suporte de Qualidade,<br/>Sempre ao seu lado</h2>
+        <p>Equipe especializada pronta para te ajudar em cada etapa — da implantação ao dia a dia da operação.</p>
+        <div className="sup-items">
+          {[
+            {icon:'💬',title:'Atendimento via WhatsApp',desc:'Tire dúvidas e resolva problemas em tempo real pelo WhatsApp.'},
+            {icon:'🖥️',title:'Acesso remoto e suporte técnico',desc:'Nossa equipe acessa seu sistema remotamente para resolver qualquer problema.'},
+            {icon:'📚',title:'Treinamento e implantação assistida',desc:'Implantamos junto com você e treinamos toda a sua equipe.'},
+            {icon:'⚡',title:'Plantão para emergências',desc:'Para clientes com planos avançados, suporte prioritário 24/7.'},
+          ].map(item=>(
+            <div className="sup-item" key={item.title}>
+              <div className="sup-item-icon">{item.icon}</div>
+              <div><h4>{item.title}</h4><p>{item.desc}</p></div>
+            </div>
+          ))}
+        </div>
+        <button className="btn-wh" onClick={()=>setModalOpen(true)} style={{padding:'1rem 2rem',fontSize:'1rem'}}>Falar com um Consultor →</button>
+      </div>
+      <div className="rv-r" style={{position:'relative'}}>
+        <div className="sup-img-wrap" style={{height:480}}>
+          <div style={{width:'100%',height:'100%',background:'linear-gradient(135deg,rgba(255,255,255,.18) 0%,rgba(255,255,255,.06) 100%)',borderRadius:24,display:'flex',alignItems:'center',justifyContent:'center',border:'1px solid rgba(255,255,255,.2)'}}>
+            <div style={{textAlign:'center',color:'rgba(255,255,255,.8)'}}>
+              <div style={{fontSize:'5rem',marginBottom:'1rem'}}>🧑‍💻</div>
+              <div style={{fontSize:'1.15rem',fontWeight:700,color:'#fff',marginBottom:'.5rem'}}>Time JiMi Food</div>
+              <div style={{fontSize:'.9rem',color:'rgba(255,255,255,.6)'}}>Especialistas em operação de restaurantes</div>
+            </div>
+          </div>
+        </div>
+        <div className="sup-badge">
+          <div className="sup-badge-icon">
+            <svg width="20" height="20" fill="none" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" stroke="#fff" strokeWidth="2" strokeLinecap="round"/><circle cx="9" cy="7" r="4" stroke="#fff" strokeWidth="2"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" stroke="#fff" strokeWidth="2" strokeLinecap="round"/></svg>
+          </div>
+          <div>
+            <h5>+500 restaurantes</h5>
+            <span>atendidos com sucesso</span>
+          </div>
+        </div>
+        <div style={{position:'absolute',top:'1.5rem',right:'1.5rem',background:'rgba(255,255,255,.15)',border:'1px solid rgba(255,255,255,.25)',borderRadius:14,padding:'.875rem 1.25rem',textAlign:'center'}}>
+          <div style={{fontSize:'1.75rem',fontWeight:800,color:'#fff',letterSpacing:'-.04em'}}>98%</div>
+          <div style={{fontSize:'.72rem',color:'rgba(255,255,255,.7)',fontWeight:600}}>satisfação dos clientes</div>
+        </div>
+      </div>
+    </section>
+
+    {/* QUALIFICATION MODAL */}
+    {modalOpen&&(
+      <div className="modal-ov" onClick={e=>{if(e.target===e.currentTarget){setModalOpen(false);setMqStep(0);setMqProfile('');setMqPdv('');setMqFat('');setMqBalanca('');setMqPhone('');setMqDisq(false);setMqDone(false);}}}>
+        <div className="modal-box">
+          <button className="modal-close" onClick={()=>{setModalOpen(false);setMqStep(0);setMqProfile('');setMqPdv('');setMqFat('');setMqBalanca('');setMqPhone('');setMqDisq(false);setMqDone(false);}}>✕</button>
+
+          {mqDisq?(
+            <div className="modal-disq">
+              <div className="modal-disq-icon">😕</div>
+              <h3>Por enquanto não é o momento ideal</h3>
+              <p>O JiMi Food é indicado para negócios no segmento gastronômico com faturamento acima de R$ 30.000/mês. Quando estiver pronto, estaremos aqui!</p>
+              <button className="btn-bl" style={{marginTop:'1.5rem',width:'100%',padding:'.875rem'}} onClick={()=>{setModalOpen(false);setMqStep(0);setMqDisq(false);}}>Entendido</button>
+            </div>
+          ):mqDone?(
+            <div className="modal-ok">
+              <div className="modal-ok-icon">✓</div>
+              <h3>Perfeito! Entraremos em contato</h3>
+              <p>Um consultor JiMi Food vai te chamar no WhatsApp em breve para agendar sua demonstração gratuita.</p>
+              <a href={"https://wa.me/5561996299003?text="+encodeURIComponent("Olá! Tenho interesse no JiMi Food.
+
+Perfil: "+mqProfile+"
+PDV atual: "+mqPdv+"
+Faturamento: "+mqFat+"
+Balança: "+(mqBalanca||"Não informado")+"
+WhatsApp: "+mqPhone)} target="_blank" rel="noopener noreferrer">
+                <button className="btn-bl" style={{width:'100%',padding:'.875rem',fontSize:'1rem',borderRadius:10}}>
+                  Falar agora no WhatsApp →
+                </button>
+              </a>
+            </div>
+          ):(
+            <>
+              <div className="modal-prog" style={{marginBottom:'1.75rem'}}>
+                {[0,1,2,3,4].map(i=><div key={i} className={"modal-prog-dot"+(i<=mqStep?' on':'')}/>)}
+              </div>
+
+              {mqStep===0&&(
+                <>
+                  <div className="modal-step">Passo 1 de 5</div>
+                  <div className="modal-q">Qual é o seu perfil?</div>
+                  {[
+                    'Dono de restaurante Self-Service / KG',
+                    'Sorveteria ou Açaí / KG',
+                    'Outro tipo de comércio no segmento gastronômico',
+                    'Tenho interesse na revenda',
+                    'Nenhuma das opções acima',
+                  ].map(opt=>(
+                    <button key={opt} className={"modal-opt"+(mqProfile===opt?' sel':'')} onClick={()=>{
+                      if(opt==='Nenhuma das opções acima'){setMqDisq(true);}
+                      else{setMqProfile(opt);setMqStep(1);}
+                    }}>{opt}</button>
+                  ))}
+                </>
+              )}
+
+              {mqStep===1&&(
+                <>
+                  <div className="modal-step">Passo 2 de 5</div>
+                  <div className="modal-q">Você já utiliza algum sistema PDV (caixa)?</div>
+                  {[
+                    'Sim, e estou satisfeito',
+                    'Sim, mas busco outras soluções',
+                    'Não utilizo nenhum sistema',
+                  ].map(opt=>(
+                    <button key={opt} className={"modal-opt"+(mqPdv===opt?' sel':'')} onClick={()=>{setMqPdv(opt);setMqStep(2);}}>{opt}</button>
+                  ))}
+                </>
+              )}
+
+              {mqStep===2&&(
+                <>
+                  <div className="modal-step">Passo 3 de 5</div>
+                  <div className="modal-q">Qual é o faturamento mensal do seu negócio?</div>
+                  {[
+                    'Até R$ 30.000,00',
+                    'De R$ 30.000,00 a R$ 80.000,00',
+                    'Acima de R$ 80.000,00',
+                  ].map(opt=>(
+                    <button key={opt} className={"modal-opt"+(mqFat===opt?' sel':'')} onClick={()=>{
+                      if(opt==='Até R$ 30.000,00'){setMqDisq(true);}
+                      else{setMqFat(opt);setMqStep(3);}
+                    }}>{opt}</button>
+                  ))}
+                </>
+              )}
+
+              {mqStep===3&&(
+                <>
+                  <div className="modal-step">Passo 4 de 5</div>
+                  <div className="modal-q">Você já possui balança? Se sim, qual modelo e marca?</div>
+                  <input className="modal-inp" placeholder="Ex: Toledo Prix 3 Fit, Filizola... ou 'Não possuo'" value={mqBalanca} onChange={e=>setMqBalanca(e.target.value)}/>
+                  <button className="btn-bl" style={{width:'100%',padding:'.875rem',borderRadius:10}} onClick={()=>setMqStep(4)} disabled={!mqBalanca.trim()}>Continuar →</button>
+                </>
+              )}
+
+              {mqStep===4&&(
+                <>
+                  <div className="modal-step">Passo 5 de 5</div>
+                  <div className="modal-q">Informe seu número de WhatsApp</div>
+                  <p style={{fontSize:'.85rem',color:'var(--text-mu)',marginBottom:'1rem'}}>Formato: DDD + 9 + XXXX-XXXX &nbsp;(ex: 61 9 9629-9003)</p>
+                  <input className="modal-inp" placeholder="Ex: 61 9 9999-9999" value={mqPhone} onChange={e=>setMqPhone(e.target.value)} type="tel"/>
+                  <button className="btn-bl" style={{width:'100%',padding:'.875rem',borderRadius:10}} disabled={mqPhone.replace(/\D/g,'').length<11} onClick={()=>{
+                    const msg=encodeURIComponent("Olá! Tenho interesse no JiMi Food.
+
+Perfil: "+mqProfile+"
+PDV atual: "+mqPdv+"
+Faturamento: "+mqFat+"
+Balança: "+(mqBalanca||"Não informado")+"
+WhatsApp: "+mqPhone);
+                    window.open("https://wa.me/5561996299003?text="+msg,"_blank");
+                    setMqDone(true);
+                  }}>Enviar e falar com consultor →</button>
+                </>
+              )}
+            </>
+          )}
+        </div>
+      </div>
+    )}
 
     {/* FOOTER */}
     <footer style={{background:'#0D0D2B',padding:'60px 5% 30px',borderTop:'none'}}>
