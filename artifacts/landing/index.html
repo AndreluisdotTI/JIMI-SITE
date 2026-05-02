@@ -175,21 +175,6 @@ footer img{height:28px;border-radius:6px;}
 .modal-ok h3{font-size:1.2rem;font-weight:800;margin-bottom:.5rem;}
 .modal-ok p{color:var(--text-mu);font-size:.9rem;line-height:1.6;margin-bottom:1.5rem;}
 
-
-/* SPLIT FEATURE SECTION */
-.split-sec{display:grid;grid-template-columns:1fr 1fr;min-height:600px;border-bottom:1px solid var(--border);}
-.split-text{background:var(--blue);padding:80px 7%;display:flex;flex-direction:column;justify-content:center;}
-.split-text h2{font-size:clamp(1.8rem,2.8vw,2.6rem);font-weight:800;letter-spacing:-.03em;color:#fff;line-height:1.15;margin-bottom:2rem;}
-.split-items{display:flex;flex-direction:column;gap:1.75rem;margin-bottom:2.5rem;}
-.split-item p{font-size:1rem;color:rgba(255,255,255,.75);line-height:1.7;padding-left:1.25rem;border-left:2px solid rgba(255,255,255,.3);}
-.split-photo{position:relative;overflow:hidden;}
-.split-photo img{width:100%;height:100%;object-fit:cover;display:block;}
-@media(max-width:900px){
-  .split-sec{grid-template-columns:1fr;}
-  .split-photo{height:320px;}
-  .split-text{padding:60px 5%;}
-}
-
 /* SUPPORT SECTION */
 .sup-sec{padding:100px 5%;background:var(--blue);display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;}
 .sup-eyebrow{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);color:rgba(255,255,255,.9);padding:.35rem 1rem;border-radius:100px;font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:1.75rem;}
@@ -649,22 +634,6 @@ function App(){
       </div>
     </section>
 
-    {/* SPLIT FEATURE SECTION */}
-    <section className="split-sec">
-      <div className="split-text rv-l">
-        <h2>A tecnologia que vai transformar seu restaurante</h2>
-        <div className="split-items">
-          <div className="split-item"><p>Tenha controle total de vendas, estoque e caixa em tempo real — tudo centralizado em um painel simples, acessado de qualquer dispositivo.</p></div>
-          <div className="split-item"><p>Integre pedidos do iFood, totem, garcom e balcao em um unico sistema. Menos erros, mais agilidade e total rastreabilidade de cada venda.</p></div>
-          <div className="split-item"><p>Tome decisoes com base em dados reais: relatorios de faturamento, ticket medio, produtos mais vendidos e desempenho por periodo — tudo automatico.</p></div>
-        </div>
-        <button className="btn-wh" onClick={()=>setModalOpen(true)} style={{padding:'1rem 2rem',fontSize:'1rem',alignSelf:'flex-start'}}>Quero ver na pratica</button>
-      </div>
-      <div className="split-photo rv-r">
-        <img src="/suporte.jpg" alt="Restaurante usando JiMi Food"/>
-      </div>
-    </section>
-
     {/* FAQ SECTION */}
     <FaqSection/>
 
@@ -689,22 +658,7 @@ function App(){
       </div>
     </section>
 
-    {
-/* SPLIT FEATURE SECTION */
-.split-sec{display:grid;grid-template-columns:1fr 1fr;min-height:600px;border-bottom:1px solid var(--border);}
-.split-text{background:var(--blue);padding:80px 7%;display:flex;flex-direction:column;justify-content:center;}
-.split-text h2{font-size:clamp(1.8rem,2.8vw,2.6rem);font-weight:800;letter-spacing:-.03em;color:#fff;line-height:1.15;margin-bottom:2rem;}
-.split-items{display:flex;flex-direction:column;gap:1.75rem;margin-bottom:2.5rem;}
-.split-item p{font-size:1rem;color:rgba(255,255,255,.75);line-height:1.7;padding-left:1.25rem;border-left:2px solid rgba(255,255,255,.3);}
-.split-photo{position:relative;overflow:hidden;}
-.split-photo img{width:100%;height:100%;object-fit:cover;display:block;}
-@media(max-width:900px){
-  .split-sec{grid-template-columns:1fr;}
-  .split-photo{height:320px;}
-  .split-text{padding:60px 5%;}
-}
-
-/* SUPPORT SECTION */}
+    {/* SUPPORT SECTION */}
     <section className="sup-sec" id="suporte-s">
       <div className="rv-l">
         <div className="sup-eyebrow">Suporte humanizado</div>
