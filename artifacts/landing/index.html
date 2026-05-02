@@ -723,13 +723,7 @@ function App(){
               <div className="modal-ok-icon">✓</div>
               <h3>Perfeito! Entraremos em contato</h3>
               <p>Um consultor JiMi Food vai te chamar no WhatsApp em breve para agendar sua demonstração gratuita.</p>
-              <a href={"https://wa.me/5561996299003?text="+encodeURIComponent("Olá! Tenho interesse no JiMi Food.
-
-Perfil: "+mqProfile+"
-PDV atual: "+mqPdv+"
-Faturamento: "+mqFat+"
-Balança: "+(mqBalanca||"Não informado")+"
-WhatsApp: "+mqPhone)} target="_blank" rel="noopener noreferrer">
+              <a href={"https://wa.me/5561996299003?text="+encodeURIComponent("Ola! Interesse JiMi Food.%0APerfil: "+mqProfile+"%0APDV: "+mqPdv+"%0AFaturamento: "+mqFat+"%0ABalanca: "+(mqBalanca||"nao informado")+"%0AWhatsApp: "+mqPhone)} target="_blank" rel="noopener noreferrer">
                 <button className="btn-bl" style={{width:'100%',padding:'.875rem',fontSize:'1rem',borderRadius:10}}>
                   Falar agora no WhatsApp →
                 </button>
@@ -807,13 +801,7 @@ WhatsApp: "+mqPhone)} target="_blank" rel="noopener noreferrer">
                   <p style={{fontSize:'.85rem',color:'var(--text-mu)',marginBottom:'1rem'}}>Formato: DDD + 9 + XXXX-XXXX &nbsp;(ex: 61 9 9629-9003)</p>
                   <input className="modal-inp" placeholder="Ex: 61 9 9999-9999" value={mqPhone} onChange={e=>setMqPhone(e.target.value)} type="tel"/>
                   <button className="btn-bl" style={{width:'100%',padding:'.875rem',borderRadius:10}} disabled={mqPhone.replace(/\D/g,'').length<11} onClick={()=>{
-                    const msg=encodeURIComponent("Olá! Tenho interesse no JiMi Food.
-
-Perfil: "+mqProfile+"
-PDV atual: "+mqPdv+"
-Faturamento: "+mqFat+"
-Balança: "+(mqBalanca||"Não informado")+"
-WhatsApp: "+mqPhone);
+                    const msg=encodeURIComponent("Ola! Interesse JiMi Food.%0APerfil: "+mqProfile+"%0APDV: "+mqPdv+"%0AFaturamento: "+mqFat+"%0ABalanca: "+(mqBalanca||"nao informado")+"%0AWhatsApp: "+mqPhone);
                     window.open("https://wa.me/5561996299003?text="+msg,"_blank");
                     setMqDone(true);
                   }}>Enviar e falar com consultor →</button>
