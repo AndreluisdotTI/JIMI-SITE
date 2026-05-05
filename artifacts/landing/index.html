@@ -50,6 +50,32 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--white);color:va
 .btn-wh:hover{transform:translateY(-2px);box-shadow:0 8px 36px rgba(0,0,0,.2);}
 .btn-wh-out{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.4);padding:.875rem 2rem;border-radius:10px;font-family:'Plus Jakarta Sans',sans-serif;font-weight:600;font-size:1rem;cursor:pointer;transition:all .2s;}
 .btn-wh-out:hover{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.7);}
+.btn-hero-green{background:linear-gradient(120deg,#1aad5e,#25D366,#0e9e52,#22c55e);background-size:250% 100%;background-position:0% 50%;border:none;color:#fff;padding:.875rem 2rem;border-radius:10px;font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:1rem;cursor:pointer;box-shadow:0 4px 24px rgba(37,211,102,.4);animation:greenShift 3s ease-in-out infinite;}
+@keyframes greenShift{0%,100%{background-position:0% 50%;}50%{background-position:100% 50%;}}
+.btn-hero-green:hover{transform:translateY(-2px);box-shadow:0 8px 36px rgba(37,211,102,.55);}
+/* NAV SUPPORT BUTTON */
+.btn-client{border:1.5px solid rgba(37,211,102,.6);background:rgba(37,211,102,.12);color:#16a34a;padding:.55rem 1.25rem;border-radius:8px;font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:.875rem;cursor:pointer;transition:all .2s;}
+.btn-client:hover{background:rgba(37,211,102,.2);border-color:#16a34a;}
+/* ECOSYSTEM SECTION */
+.eco-sec{padding:90px 5%;background:#fff;border-bottom:1px solid var(--border);}
+.eco-eyebrow{display:inline-flex;align-items:center;gap:6px;background:var(--blue-xl);border:1px solid rgba(51,51,229,.2);color:var(--blue);padding:.35rem 1rem;border-radius:100px;font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:1.25rem;}
+.eco-hd{font-size:clamp(2rem,3.5vw,2.8rem);font-weight:800;letter-spacing:-.04em;line-height:1.1;margin-bottom:.75rem;}
+.eco-sub{font-size:1rem;color:var(--text-mu);line-height:1.7;max-width:600px;margin-bottom:3.5rem;}
+.eco-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;}
+.eco-card{border:1.5px solid var(--border);border-radius:20px;padding:1.75rem 1.5rem;transition:all .25s;cursor:default;background:#fff;}
+.eco-card:hover{border-color:var(--blue);box-shadow:0 8px 32px rgba(51,51,229,.1);transform:translateY(-3px);}
+.eco-card-icon{font-size:2rem;margin-bottom:1rem;}
+.eco-card-tag{font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--blue);margin-bottom:.4rem;}
+.eco-card-name{font-size:.975rem;font-weight:700;color:var(--text);line-height:1.3;}
+.eco-center{text-align:center;margin-bottom:2.5rem;}
+@media(max-width:900px){.eco-grid{grid-template-columns:repeat(2,1fr);}}
+/* WA CHOICE MODAL */
+.wa-choice-ov{position:fixed;inset:0;background:rgba(10,10,26,.5);backdrop-filter:blur(4px);z-index:900;display:flex;align-items:center;justify-content:center;padding:1rem;}
+.wa-choice-box{background:#fff;border-radius:20px;padding:2rem;width:100%;max-width:420px;position:relative;box-shadow:0 40px 100px rgba(10,10,40,.25);}
+.wa-choice-btn{width:100%;padding:1rem 1.25rem;border-radius:12px;border:1.5px solid var(--border);background:#fff;font-family:'Plus Jakarta Sans',sans-serif;font-size:.95rem;font-weight:600;color:var(--text-m);cursor:pointer;display:flex;align-items:center;gap:.875rem;text-align:left;transition:all .2s;margin-bottom:.75rem;}
+.wa-choice-btn:hover{border-color:var(--blue);background:var(--blue-xl);color:var(--blue);}
+.wa-choice-btn:last-child{margin-bottom:0;}
+.wa-choice-btn-icon{width:44px;height:44px;border-radius:12px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:1.3rem;}
 .hero-stats{display:flex;gap:2.5rem;}
 .hero-stat-num{font-size:2rem;font-weight:800;letter-spacing:-.04em;color:#fff;}
 .hero-stat-lbl{font-size:.78rem;color:rgba(255,255,255,.6);font-weight:500;margin-top:.2rem;}
@@ -353,6 +379,7 @@ function App(){
   const [mqDone,setMqDone]=useState(false);
   const [supPhone,setSupPhone]=useState('');
   const [supPhoneErr,setSupPhoneErr]=useState('');
+  const [waChoiceOpen,setWaChoiceOpen]=useState(false);
   const [tweaks,setTweaks]=useState(TWEAK_DEFAULTS);
   const [twOn,setTwOn]=useState(false);
 
@@ -401,7 +428,7 @@ function App(){
         <li><a href="#cta-s">Contato</a></li>
       </ul>
       <div className="nav-r">
-        <button className="btn-out" onClick={()=>setSupportModalOpen(true)}>Já sou Cliente</button>
+        <button className="btn-client" onClick={()=>setSupportModalOpen(true)}>Já sou Cliente</button>
         <button className="btn-bl" onClick={()=>setModalOpen(true)}>Falar com Consultor</button>
       </div>
     </nav>
@@ -415,7 +442,7 @@ function App(){
         <h1>Menos fila.<br/><span>Mais sabor.</span><br/>Mais controle.</h1>
         <p className="hero-sub">O JiMi Food centraliza toda a operação do seu restaurante em um único ecossistema — do pedido à produção, do caixa à fidelização. Tudo integrado, tudo automático.</p>
         <div className="hero-ctas">
-          <button className="btn-wh" onClick={()=>setModalOpen(true)}>Quero uma Demonstração</button>
+          <button className="btn-hero-green" onClick={()=>setModalOpen(true)}>Quero uma Demonstração</button>
           <button className="btn-wh-out" onClick={()=>scroll('sol-s')}>Conhecer as Soluções →</button>
         </div>
         <div className="hero-stats">
@@ -432,6 +459,44 @@ function App(){
     </section>
 
     {/* TRUST */}
+    {/* ECOSYSTEM SECTION */}
+    <section className="eco-sec rv">
+      <div className="eco-center">
+        <div className="eco-eyebrow">Ecossistema Completo</div>
+        <h2 className="eco-hd">Veja o JiMi Food em ação</h2>
+        <p className="eco-sub">Um ecossistema completo de hardware e software — tudo integrado, tudo sincronizado em tempo real.</p>
+      </div>
+      <div className="eco-grid">
+        {[
+          {icon:'🖥️',tag:'Software',name:'PDV Inteligente'},
+          {icon:'🤖',tag:'Automação',name:'Jimi Robô'},
+          {icon:'📟',tag:'Hardware',name:'Totens de Autoatendimento'},
+          {icon:'🚦',tag:'Controle',name:'Catracas de Acesso'},
+          {icon:'📡',tag:'Segurança',name:'Antenas Antifurto'},
+          {icon:'📲',tag:'Mobilidade',name:'App de Garçom'},
+          {icon:'⚖️',tag:'Hardware',name:'Balança Integrada'},
+          {icon:'🏷️',tag:'Identificação',name:'Leitores RFID e Código de Barras'},
+          {icon:'🖨️',tag:'Produção',name:'Impressoras de Cozinha'},
+          {icon:'💳',tag:'Pagamento',name:'Maquininhas Stone'},
+          {icon:'🛵',tag:'Delivery',name:'Integração iFood'},
+          {icon:'📱',tag:'Digital',name:'Cardápio Digital & QR Code'},
+          {icon:'🌟',tag:'Fidelização',name:'Programa de Pontos'},
+          {icon:'📊',tag:'Gestão',name:'Relatórios & Dashboard'},
+        ].map(c=>(
+          <div className="eco-card rv" key={c.name}>
+            <div className="eco-card-icon">{c.icon}</div>
+            <div className="eco-card-tag">{c.tag}</div>
+            <div className="eco-card-name">{c.name}</div>
+          </div>
+        ))}
+      </div>
+      <div style={{textAlign:'center',marginTop:'3rem'}}>
+        <button className="btn-bl" style={{padding:'.875rem 2.5rem',fontSize:'1rem',borderRadius:12}} onClick={()=>setModalOpen(true)}>
+          Ver Demonstração Completa →
+        </button>
+      </div>
+    </section>
+
     <div className="trust">
       <span className="trust-lbl">Integrado com</span>
       <div className="trust-div"/>
@@ -895,6 +960,36 @@ function App(){
       </div>
     </footer>
 
+    {/* WA CHOICE MODAL */}
+    {waChoiceOpen&&(
+      <div className="wa-choice-ov" onClick={e=>{if(e.target===e.currentTarget)setWaChoiceOpen(false);}}>
+        <div className="wa-choice-box">
+          <button className="modal-close" onClick={()=>setWaChoiceOpen(false)}>✕</button>
+          <div style={{textAlign:'center',marginBottom:'1.5rem'}}>
+            <div style={{width:52,height:52,borderRadius:'50%',background:'#25D366',display:'flex',alignItems:'center',justifyContent:'center',margin:'0 auto .875rem'}}>
+              <svg viewBox="0 0 24 24" fill="white" width="26" height="26"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.553 4.116 1.52 5.843L.057 23.143a.75.75 0 00.9.9l5.3-1.463A11.938 11.938 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.75a9.716 9.716 0 01-5.107-1.446l-.364-.217-3.135.865.843-3.138-.237-.374A9.75 9.75 0 012.25 12C2.25 6.615 6.615 2.25 12 2.25S21.75 6.615 21.75 12 17.385 21.75 12 21.75z"/></svg>
+            </div>
+            <div style={{fontSize:'1.15rem',fontWeight:800,letterSpacing:'-.02em',color:'var(--text)',marginBottom:'.3rem'}}>Como podemos te ajudar?</div>
+            <p style={{fontSize:'.875rem',color:'var(--text-mu)'}}>Selecione a opção que melhor descreve você</p>
+          </div>
+          <button className="wa-choice-btn" onClick={()=>{setWaChoiceOpen(false);setModalOpen(true);}}>
+            <div className="wa-choice-btn-icon" style={{background:'var(--blue-xl)'}}>🚀</div>
+            <div>
+              <div style={{fontWeight:700,color:'var(--text)',marginBottom:'.15rem'}}>Quero conhecer o JiMi Food</div>
+              <div style={{fontSize:'.8rem',color:'var(--text-mu)',fontWeight:500}}>Ainda não sou cliente, quero saber mais</div>
+            </div>
+          </button>
+          <button className="wa-choice-btn" onClick={()=>{setWaChoiceOpen(false);setSupportModalOpen(true);}}>
+            <div className="wa-choice-btn-icon" style={{background:'rgba(37,211,102,.12)'}}>🛠️</div>
+            <div>
+              <div style={{fontWeight:700,color:'var(--text)',marginBottom:'.15rem'}}>Já sou Cliente / Suporte</div>
+              <div style={{fontSize:'.8rem',color:'var(--text-mu)',fontWeight:500}}>Preciso de ajuda ou suporte técnico</div>
+            </div>
+          </button>
+        </div>
+      </div>
+    )}
+
     {/* SUPPORT MODAL */}
     {supportModalOpen&&(
       <div className="modal-ov" onClick={e=>{if(e.target===e.currentTarget){setSupportModalOpen(false);setSupPhone('');setSupPhoneErr('');}}}>
@@ -919,7 +1014,7 @@ function App(){
     )}
 
     {/* WHATSAPP FAB */}
-    <div className="wa-fab" onClick={()=>setModalOpen(true)} title="Fale conosco pelo WhatsApp">
+    <div className="wa-fab" onClick={()=>setWaChoiceOpen(true)} title="Fale conosco pelo WhatsApp">
       <div className="wa-ring" style={{background:'conic-gradient(from 0deg,#25D366 0%,#128C7E 40%,transparent 60%,transparent 80%,#25D366 100%)'}}/>
       <div className="wa-gap"/>
       <div className="wa-inner">
