@@ -460,40 +460,23 @@ function App(){
 
     {/* TRUST */}
     {/* ECOSYSTEM SECTION */}
-    <section className="eco-sec rv">
-      <div className="eco-center">
-        <div className="eco-eyebrow">Ecossistema Completo</div>
-        <h2 className="eco-hd">Veja o JiMi Food em ação</h2>
-        <p className="eco-sub">Um ecossistema completo de hardware e software — tudo integrado, tudo sincronizado em tempo real.</p>
+    {/* PRODUCT SHOWCASE */}
+    <section style={{padding:'100px 5%',background:'var(--bg)',borderTop:'1px solid var(--border)',borderBottom:'1px solid var(--border)',textAlign:'center'}}>
+      <div className="rv" style={{marginBottom:'3rem'}}>
+        <div style={{display:'inline-flex',alignItems:'center',gap:6,background:'var(--blue-xl)',border:'1px solid rgba(51,51,229,.2)',color:'var(--blue)',padding:'.35rem 1rem',borderRadius:100,fontSize:'.72rem',fontWeight:700,letterSpacing:'.08em',textTransform:'uppercase',marginBottom:'1.25rem'}}>Ecossistema Completo</div>
+        <h2 style={{fontSize:'clamp(2rem,3.5vw,3rem)',fontWeight:800,letterSpacing:'-.03em',lineHeight:1.1,marginBottom:'1rem'}}>Veja o JiMi Food em ação</h2>
+        <p style={{fontSize:'1.05rem',color:'var(--text-mu)',maxWidth:560,margin:'0 auto',lineHeight:1.7}}>Um ecossistema completo de hardware e software — tudo integrado, tudo sincronizado em tempo real.</p>
       </div>
-      <div className="eco-grid">
-        {[
-          {icon:'🖥️',tag:'Software',name:'PDV Inteligente'},
-          {icon:'🤖',tag:'Automação',name:'Jimi Robô'},
-          {icon:'📟',tag:'Hardware',name:'Totens de Autoatendimento'},
-          {icon:'🚦',tag:'Controle',name:'Catracas de Acesso'},
-          {icon:'📡',tag:'Segurança',name:'Antenas Antifurto'},
-          {icon:'📲',tag:'Mobilidade',name:'App de Garçom'},
-          {icon:'⚖️',tag:'Hardware',name:'Balança Integrada'},
-          {icon:'🏷️',tag:'Identificação',name:'Leitores RFID e Código de Barras'},
-          {icon:'🖨️',tag:'Produção',name:'Impressoras de Cozinha'},
-          {icon:'💳',tag:'Pagamento',name:'Maquininhas Stone'},
-          {icon:'🛵',tag:'Delivery',name:'Integração iFood'},
-          {icon:'📱',tag:'Digital',name:'Cardápio Digital & QR Code'},
-          {icon:'🌟',tag:'Fidelização',name:'Programa de Pontos'},
-          {icon:'📊',tag:'Gestão',name:'Relatórios & Dashboard'},
-        ].map(c=>(
-          <div className="eco-card rv" key={c.name}>
-            <div className="eco-card-icon">{c.icon}</div>
-            <div className="eco-card-tag">{c.tag}</div>
-            <div className="eco-card-name">{c.name}</div>
+      <div className="rv d1" style={{maxWidth:960,margin:'0 auto',borderRadius:24,overflow:'hidden',boxShadow:'0 24px 80px rgba(51,51,229,.15)',border:'1px solid var(--border)'}}>
+        <img src={window.PRODUCT_B64} alt="JiMi Food — Ecossistema completo" style={{width:'100%',display:'block'}}/>
+      </div>
+      <div className="rv d2" style={{display:'flex',gap:'2.5rem',justifyContent:'center',marginTop:'2.5rem',flexWrap:'wrap'}}>
+        {['PDV + Maquininha','App Android','Monitor de Gestão','Cardápio Digital','iFood + WhatsApp + 99Food'].map(item=>(
+          <div key={item} style={{display:'flex',alignItems:'center',gap:'.5rem',fontSize:'.85rem',color:'var(--text-m)',fontWeight:500}}>
+            <div style={{width:7,height:7,borderRadius:'50%',background:'var(--blue)',flexShrink:0}}/>
+            {item}
           </div>
         ))}
-      </div>
-      <div style={{textAlign:'center',marginTop:'3rem'}}>
-        <button className="btn-bl" style={{padding:'.875rem 2.5rem',fontSize:'1rem',borderRadius:12}} onClick={()=>setModalOpen(true)}>
-          Ver Demonstração Completa →
-        </button>
       </div>
     </section>
 
@@ -610,26 +593,6 @@ function App(){
                 Explorar solução →
               </span>
             </div>
-          </div>
-        ))}
-      </div>
-    </section>
-
-    {/* PRODUCT SHOWCASE */}
-    <section style={{padding:'100px 5%',background:'var(--bg)',borderTop:'1px solid var(--border)',borderBottom:'1px solid var(--border)',textAlign:'center'}}>
-      <div className="rv" style={{marginBottom:'3rem'}}>
-        <div style={{display:'inline-flex',alignItems:'center',gap:6,background:'var(--blue-xl)',border:'1px solid rgba(51,51,229,.2)',color:'var(--blue)',padding:'.35rem 1rem',borderRadius:100,fontSize:'.72rem',fontWeight:700,letterSpacing:'.08em',textTransform:'uppercase',marginBottom:'1.25rem'}}>Ecossistema Completo</div>
-        <h2 style={{fontSize:'clamp(2rem,3.5vw,3rem)',fontWeight:800,letterSpacing:'-.03em',lineHeight:1.1,marginBottom:'1rem'}}>Veja o JiMi Food em ação</h2>
-        <p style={{fontSize:'1.05rem',color:'var(--text-mu)',maxWidth:560,margin:'0 auto',lineHeight:1.7}}>Um ecossistema completo de hardware e software — tudo integrado, tudo sincronizado em tempo real.</p>
-      </div>
-      <div className="rv d1" style={{maxWidth:960,margin:'0 auto',borderRadius:24,overflow:'hidden',boxShadow:'0 24px 80px rgba(51,51,229,.15)',border:'1px solid var(--border)'}}>
-        <img src={window.PRODUCT_B64} alt="JiMi Food — Ecossistema completo" style={{width:'100%',display:'block'}}/>
-      </div>
-      <div className="rv d2" style={{display:'flex',gap:'2.5rem',justifyContent:'center',marginTop:'2.5rem',flexWrap:'wrap'}}>
-        {['PDV + Maquininha','App Android','Monitor de Gestão','Cardápio Digital','iFood + WhatsApp + 99Food'].map(item=>(
-          <div key={item} style={{display:'flex',alignItems:'center',gap:'.5rem',fontSize:'.85rem',color:'var(--text-m)',fontWeight:500}}>
-            <div style={{width:7,height:7,borderRadius:'50%',background:'var(--blue)',flexShrink:0}}/>
-            {item}
           </div>
         ))}
       </div>
