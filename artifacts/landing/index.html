@@ -217,6 +217,18 @@ footer img{height:28px;border-radius:6px;}
 .tw-sel{width:100%;border:1px solid var(--border);background:var(--bg);color:var(--text);padding:.45rem;border-radius:7px;font-size:.8rem;outline:none;margin-bottom:.875rem;}
 .tw-x{position:absolute;top:.875rem;right:.875rem;background:none;border:none;color:var(--text-mu);cursor:pointer;font-size:1rem;}
 
+/* WHATSAPP FLOATING BUTTON */
+.wa-fab{position:fixed;bottom:1.75rem;right:1.75rem;z-index:450;display:flex;align-items:center;justify-content:center;cursor:pointer;}
+.wa-ring{position:absolute;width:68px;height:68px;border-radius:50%;animation:wa-spin 2.5s linear infinite;}
+@keyframes wa-spin{
+  from{transform:rotate(0deg);}
+  to{transform:rotate(360deg);}
+}
+.wa-gap{position:absolute;width:60px;height:60px;border-radius:50%;background:#fff;}
+.wa-inner{position:relative;width:52px;height:52px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(37,211,102,.4);transition:transform .2s,box-shadow .2s;}
+.wa-fab:hover .wa-inner{transform:scale(1.1);box-shadow:0 6px 24px rgba(37,211,102,.55);}
+.wa-inner svg{width:26px;height:26px;fill:#fff;}
+
 @media(max-width:900px){
   .nav-links,.dots{display:none;}
   .sol-intro{grid-template-columns:1fr;gap:2rem;padding:60px 5%;}
@@ -331,14 +343,16 @@ function App(){
   const [phone,setPhone]=useState('');
   const [submitted,setSubmitted]=useState(false);
   const [modalOpen,setModalOpen]=useState(false);
+  const [supportModalOpen,setSupportModalOpen]=useState(false);
   const [mqStep,setMqStep]=useState(0);
   const [mqProfile,setMqProfile]=useState('');
   const [mqPdv,setMqPdv]=useState('');
   const [mqFat,setMqFat]=useState('');
-  const [mqBalanca,setMqBalanca]=useState('');
   const [mqPhone,setMqPhone]=useState('');
   const [mqDisq,setMqDisq]=useState(false);
   const [mqDone,setMqDone]=useState(false);
+  const [supPhone,setSupPhone]=useState('');
+  const [supPhoneErr,setSupPhoneErr]=useState('');
   const [tweaks,setTweaks]=useState(TWEAK_DEFAULTS);
   const [twOn,setTwOn]=useState(false);
 
@@ -387,7 +401,7 @@ function App(){
         <li><a href="#cta-s">Contato</a></li>
       </ul>
       <div className="nav-r">
-        <button className="btn-out" onClick={()=>setModalOpen(true)}>Ver Demonstração</button>
+        <button className="btn-out" onClick={()=>setSupportModalOpen(true)}>Já sou Cliente</button>
         <button className="btn-bl" onClick={()=>setModalOpen(true)}>Falar com Consultor</button>
       </div>
     </nav>
@@ -728,23 +742,23 @@ function App(){
 
     {/* QUALIFICATION MODAL */}
     {modalOpen&&(
-      <div className="modal-ov" onClick={e=>{if(e.target===e.currentTarget){setModalOpen(false);setMqStep(0);setMqProfile('');setMqPdv('');setMqFat('');setMqBalanca('');setMqPhone('');setMqDisq(false);setMqDone(false);}}}>
+      <div className="modal-ov" onClick={e=>{if(e.target===e.currentTarget){setModalOpen(false);setMqStep(0);setMqProfile('');setMqPdv('');setMqFat('');setMqPhone('');setMqDisq(false);setMqDone(false);}}}>
         <div className="modal-box">
-          <button className="modal-close" onClick={()=>{setModalOpen(false);setMqStep(0);setMqProfile('');setMqPdv('');setMqFat('');setMqBalanca('');setMqPhone('');setMqDisq(false);setMqDone(false);}}>✕</button>
+          <button className="modal-close" onClick={()=>{setModalOpen(false);setMqStep(0);setMqProfile('');setMqPdv('');setMqFat('');setMqPhone('');setMqDisq(false);setMqDone(false);}}>✕</button>
 
           {mqDisq?(
             <div className="modal-disq">
-              <div className="modal-disq-icon">😕</div>
-              <h3>Por enquanto não é o momento ideal</h3>
-              <p>O JiMi Food é indicado para negócios no segmento gastronômico com faturamento acima de R$ 30.000/mês. Quando estiver pronto, estaremos aqui!</p>
-              <button className="btn-bl" style={{marginTop:'1.5rem',width:'100%',padding:'.875rem'}} onClick={()=>{setModalOpen(false);setMqStep(0);setMqDisq(false);}}>Entendido</button>
+              <div className="modal-disq-icon">😔</div>
+              <h3>Agradecemos seu interesse!</h3>
+              <p>No momento o JiMi Food não atende esse perfil. Continue crescendo e volte em breve!</p>
+              <button className="btn-bl" style={{marginTop:'1.5rem',width:'100%',padding:'.875rem'}} onClick={()=>{setModalOpen(false);setMqStep(0);setMqDisq(false);}}>Fechar</button>
             </div>
           ):mqDone?(
             <div className="modal-ok">
-              <div className="modal-ok-icon">✓</div>
+              <div className="modal-ok-icon" style={{color:'#fff'}}>✓</div>
               <h3>Perfeito! Entraremos em contato</h3>
-              <p>Um consultor JiMi Food vai te chamar no WhatsApp em breve para agendar sua demonstração gratuita.</p>
-              <a href={"https://wa.me/5561996299003?text="+encodeURIComponent("Ola! Interesse JiMi Food.%0APerfil: "+mqProfile+"%0APDV: "+mqPdv+"%0AFaturamento: "+mqFat+"%0ABalanca: "+(mqBalanca||"nao informado")+"%0AWhatsApp: "+mqPhone)} target="_blank" rel="noopener noreferrer">
+              <p>Um consultor JiMi Food vai te chamar no WhatsApp em breve para apresentar a solução ideal para o seu negócio.</p>
+              <a href={"https://wa.me/5561996299003?text="+encodeURIComponent("Olá! Vim pelo site e tenho interesse em conhecer o JiMi Food.\n\nPerfil: "+mqProfile+"\nUso de PDV: "+mqPdv+"\nFaturamento: "+mqFat+"\nMeu WhatsApp: "+mqPhone)} target="_blank" rel="noopener noreferrer">
                 <button className="btn-bl" style={{width:'100%',padding:'.875rem',fontSize:'1rem',borderRadius:10}}>
                   Falar agora no WhatsApp →
                 </button>
@@ -753,22 +767,21 @@ function App(){
           ):(
             <>
               <div className="modal-prog" style={{marginBottom:'1.75rem'}}>
-                {[0,1,2,3,4].map(i=><div key={i} className={"modal-prog-dot"+(i<=mqStep?' on':'')}/>)}
+                {[0,1,2,3].map(i=><div key={i} className={"modal-prog-dot"+(i<=mqStep?' on':'')}/>)}
               </div>
 
               {mqStep===0&&(
                 <>
-                  <div className="modal-step">Passo 1 de 5</div>
+                  <div className="modal-step">Passo 1 de 4</div>
                   <div className="modal-q">Qual é o seu perfil?</div>
                   {[
-                    'Dono de restaurante Self-Service / KG',
-                    'Sorveteria ou Açaí / KG',
-                    'Outro tipo de comércio no segmento gastronômico',
+                    'Dono de restaurante Self-Service KG',
+                    'Sorveteria (Açaí) KG',
                     'Tenho interesse na revenda',
                     'Nenhuma das opções acima',
                   ].map(opt=>(
                     <button key={opt} className={"modal-opt"+(mqProfile===opt?' sel':'')} onClick={()=>{
-                      if(opt==='Nenhuma das opções acima'){setMqDisq(true);}
+                      if(opt==='Nenhuma das opções acima'){setModalOpen(false);setMqStep(0);}
                       else{setMqProfile(opt);setMqStep(1);}
                     }}>{opt}</button>
                   ))}
@@ -777,21 +790,21 @@ function App(){
 
               {mqStep===1&&(
                 <>
-                  <div className="modal-step">Passo 2 de 5</div>
+                  <div className="modal-step">Passo 2 de 4</div>
                   <div className="modal-q">Você já utiliza algum sistema PDV (caixa)?</div>
                   {[
-                    'Sim, e estou satisfeito',
                     'Sim, mas busco outras soluções',
-                    'Não utilizo nenhum sistema',
+                    'Não. Começando do Zero',
                   ].map(opt=>(
                     <button key={opt} className={"modal-opt"+(mqPdv===opt?' sel':'')} onClick={()=>{setMqPdv(opt);setMqStep(2);}}>{opt}</button>
                   ))}
+                  <button style={{marginTop:'.5rem',background:'none',border:'none',color:'var(--text-mu)',fontSize:'.85rem',cursor:'pointer'}} onClick={()=>setMqStep(0)}>← Voltar</button>
                 </>
               )}
 
               {mqStep===2&&(
                 <>
-                  <div className="modal-step">Passo 3 de 5</div>
+                  <div className="modal-step">Passo 3 de 4</div>
                   <div className="modal-q">Qual é o faturamento mensal do seu negócio?</div>
                   {[
                     'Até R$ 30.000,00',
@@ -803,29 +816,22 @@ function App(){
                       else{setMqFat(opt);setMqStep(3);}
                     }}>{opt}</button>
                   ))}
+                  <button style={{marginTop:'.5rem',background:'none',border:'none',color:'var(--text-mu)',fontSize:'.85rem',cursor:'pointer'}} onClick={()=>setMqStep(1)}>← Voltar</button>
                 </>
               )}
 
               {mqStep===3&&(
                 <>
-                  <div className="modal-step">Passo 4 de 5</div>
-                  <div className="modal-q">Você já possui balança? Se sim, qual modelo e marca?</div>
-                  <input className="modal-inp" placeholder="Ex: Toledo Prix 3 Fit, Filizola... ou 'Não possuo'" value={mqBalanca} onChange={e=>setMqBalanca(e.target.value)}/>
-                  <button className="btn-bl" style={{width:'100%',padding:'.875rem',borderRadius:10}} onClick={()=>setMqStep(4)} disabled={!mqBalanca.trim()}>Continuar →</button>
-                </>
-              )}
-
-              {mqStep===4&&(
-                <>
-                  <div className="modal-step">Passo 5 de 5</div>
+                  <div className="modal-step">Passo 4 de 4</div>
                   <div className="modal-q">Informe seu número de WhatsApp</div>
                   <p style={{fontSize:'.85rem',color:'var(--text-mu)',marginBottom:'1rem'}}>Formato: DDD + 9 + XXXX-XXXX &nbsp;(ex: 61 9 9629-9003)</p>
                   <input className="modal-inp" placeholder="Ex: 61 9 9999-9999" value={mqPhone} onChange={e=>setMqPhone(e.target.value)} type="tel"/>
                   <button className="btn-bl" style={{width:'100%',padding:'.875rem',borderRadius:10}} disabled={mqPhone.replace(/\D/g,'').length<11} onClick={()=>{
-                    const msg=encodeURIComponent("Ola! Interesse JiMi Food.%0APerfil: "+mqProfile+"%0APDV: "+mqPdv+"%0AFaturamento: "+mqFat+"%0ABalanca: "+(mqBalanca||"nao informado")+"%0AWhatsApp: "+mqPhone);
-                    window.open("https://wa.me/5561996299003?text="+msg,"_blank");
+                    const msgParts=["Olá! Vim pelo site e tenho interesse em conhecer o JiMi Food.","","Perfil: "+mqProfile,"Uso de PDV: "+mqPdv,"Faturamento: "+mqFat,"Meu WhatsApp: "+mqPhone];
+                    window.open("https://wa.me/5561996299003?text="+encodeURIComponent(msgParts.join("\n")),"_blank");
                     setMqDone(true);
-                  }}>Enviar e falar com consultor →</button>
+                  }}>Falar com Consultor no WhatsApp →</button>
+                  <button style={{marginTop:'.75rem',background:'none',border:'none',color:'var(--text-mu)',fontSize:'.85rem',cursor:'pointer',display:'block'}} onClick={()=>setMqStep(2)}>← Voltar</button>
                 </>
               )}
             </>
@@ -875,17 +881,51 @@ function App(){
           </div>
         </div>
       </div>
-      <div style={{borderTop:'1px solid rgba(255,255,255,.08)',paddingTop:'1.5rem',display:'flex',justifyContent:'space-between',alignItems:'center',flexWrap:'wrap',gap:'1rem'}}>
-        <span style={{fontSize:'.8rem',color:'rgba(255,255,255,.3)'}}>© 2026 JiMi Food. Todos os direitos reservados.</span>
-        <div style={{display:'flex',gap:'1.5rem'}}>
-          {['Política de Privacidade','Termos de Uso'].map(l=>(
-            <span key={l} style={{fontSize:'.8rem',color:'rgba(255,255,255,.3)',cursor:'pointer',transition:'color .2s'}}
-              onMouseEnter={e=>e.currentTarget.style.color='rgba(255,255,255,.6)'}
-              onMouseLeave={e=>e.currentTarget.style.color='rgba(255,255,255,.3)'}>{l}</span>
-          ))}
-        </div>
+      <div style={{borderTop:'1px solid rgba(255,255,255,.08)',paddingTop:'1.5rem',textAlign:'center'}}>
+        <p style={{fontSize:'.78rem',color:'rgba(255,255,255,.35)',marginBottom:'.4rem'}}>
+          CNPJ: 13.470.201/0001-02
+        </p>
+        <p style={{fontSize:'.75rem',color:'rgba(255,255,255,.3)',marginBottom:'.4rem',lineHeight:1.6}}>
+          Rua das Figueiras, Quadra 101, Lote 07 — Edifício Vista Shopping, 1º Andar, Lojas 56 a 59<br/>
+          Águas Claras, Brasília/DF, 71906-750
+        </p>
+        <p style={{fontSize:'.75rem',color:'rgba(255,255,255,.25)'}}>
+          JiMi Food 2026 | Todos os direitos reservados | Desenvolvido por André Neiva
+        </p>
       </div>
     </footer>
+
+    {/* SUPPORT MODAL */}
+    {supportModalOpen&&(
+      <div className="modal-ov" onClick={e=>{if(e.target===e.currentTarget){setSupportModalOpen(false);setSupPhone('');setSupPhoneErr('');}}}>
+        <div className="modal-box">
+          <button className="modal-close" onClick={()=>{setSupportModalOpen(false);setSupPhone('');setSupPhoneErr('');}}>✕</button>
+          <div style={{textAlign:'center',paddingBottom:'.5rem'}}>
+            <div style={{fontSize:'2.5rem',marginBottom:'.75rem'}}>🛠️</div>
+            <div className="modal-q" style={{marginBottom:'.25rem'}}>Suporte ao Cliente</div>
+            <p style={{fontSize:'.875rem',color:'var(--text-mu)',lineHeight:1.6,marginBottom:'1.5rem'}}>Informe seu WhatsApp para que nossa equipe de suporte possa te atender com agilidade.</p>
+          </div>
+          <p style={{fontSize:'.82rem',color:'var(--text-mu)',marginBottom:'.5rem'}}>Formato: DDD + 9 + XXXX-XXXX</p>
+          <input className="modal-inp" placeholder="Ex: 61 9 9999-9999" value={supPhone} onChange={e=>{setSupPhone(e.target.value);setSupPhoneErr('');}} type="tel"/>
+          {supPhoneErr&&<p style={{color:'#e53e3e',fontSize:'.8rem',marginBottom:'.75rem',marginTop:'-.5rem'}}>{supPhoneErr}</p>}
+          <button className="btn-bl" style={{width:'100%',padding:'.875rem',borderRadius:10,background:'#25D366',boxShadow:'0 4px 20px rgba(37,211,102,.3)'}} onClick={()=>{
+            if(supPhone.replace(/\D/g,'').length<11){setSupPhoneErr('Informe um número válido: DDD + 9 + XXXX-XXXX');return;}
+            const msg=encodeURIComponent("Olá! Sou cliente JiMi Food e preciso de suporte.\nMeu WhatsApp: "+supPhone);
+            window.open("https://wa.me/5561996299003?text="+msg,"_blank");
+            setSupportModalOpen(false);setSupPhone('');setSupPhoneErr('');
+          }}>Falar com Suporte no WhatsApp →</button>
+        </div>
+      </div>
+    )}
+
+    {/* WHATSAPP FAB */}
+    <div className="wa-fab" onClick={()=>setModalOpen(true)} title="Fale conosco pelo WhatsApp">
+      <div className="wa-ring" style={{background:'conic-gradient(from 0deg,#25D366 0%,#128C7E 40%,transparent 60%,transparent 80%,#25D366 100%)'}}/>
+      <div className="wa-gap"/>
+      <div className="wa-inner">
+        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.553 4.116 1.52 5.843L.057 23.143a.75.75 0 00.9.9l5.3-1.463A11.938 11.938 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.75a9.716 9.716 0 01-5.107-1.446l-.364-.217-3.135.865.843-3.138-.237-.374A9.75 9.75 0 012.25 12C2.25 6.615 6.615 2.25 12 2.25S21.75 6.615 21.75 12 17.385 21.75 12 21.75z"/></svg>
+      </div>
+    </div>
 
     {/* TWEAKS */}
     {twOn&&(
