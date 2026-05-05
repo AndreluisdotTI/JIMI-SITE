@@ -18,6 +18,7 @@
   --border:#E2E2F0;--white:#FFF;--bg:#FAFAFE;
 }
 html{scroll-behavior:smooth;}
+html{overflow-x:hidden;}
 body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--white);color:var(--text);-webkit-font-smoothing:antialiased;overflow-x:hidden;}
 ::-webkit-scrollbar{width:5px;}::-webkit-scrollbar-track{background:#f0f0f8;}::-webkit-scrollbar-thumb{background:#ccc;border-radius:3px;}
 
@@ -280,6 +281,32 @@ footer img{height:28px;border-radius:6px;}
   .hero-robot{max-width:260px;}
   .cta-form{flex-direction:column;}
   .trust{gap:1.5rem;}
+
+  /* UTILITY: responsive grids for inline-style sections */
+  .mob-grid-1{grid-template-columns:1fr!important;gap:2.5rem!important;}
+  .mob-grid-2{grid-template-columns:1fr 1fr!important;gap:1.25rem!important;}
+  .mob-grid-footer{grid-template-columns:1fr 1fr!important;gap:2rem!important;}
+  .mob-hide{display:none!important;}
+  .mob-static{position:static!important;}
+  .mob-pad{padding:60px 5%!important;}
+
+  /* STATS section */
+  #results-s{padding:60px 5%!important;}
+
+  /* INTEGRATIONS section */
+  .sec-integ{padding:60px 5%!important;}
+
+  /* TESTIMONIAL section */
+  .sec-test{padding:60px 5%!important;}
+
+  /* FAQ section */
+  .sec-faq{padding:60px 5%!important;}
+
+  /* FOOTER */
+  .sec-footer{padding:48px 5% 28px!important;}
+
+  /* NAV buttons on mobile */
+  .nav-r .btn-client{display:none;}
 }
 
 /* SPLIT FEATURE SECTION */
@@ -336,9 +363,9 @@ function FaqSection() {
     {q:'Existe contrato de fidelidade?',a:'Não há contrato de fidelidade obrigatório. Oferecemos planos mensais flexíveis e planos anuais com desconto. Você pode cancelar a qualquer momento sem multa.'},
   ];
   return(
-    <section style={{padding:'100px 5%',background:'#fff',borderTop:'1px solid var(--border)'}} id="faq-s">
-      <div style={{display:'grid',gridTemplateColumns:'1fr 1.6fr',gap:'5rem',alignItems:'flex-start'}}>
-        <div style={{position:'sticky',top:'100px'}} className="rv-l">
+    <section className="sec-faq" style={{padding:'100px 5%',background:'#fff',borderTop:'1px solid var(--border)'}} id="faq-s">
+      <div className="mob-grid-1" style={{display:'grid',gridTemplateColumns:'1fr 1.6fr',gap:'5rem',alignItems:'flex-start'}}>
+        <div className="mob-static rv-l" style={{position:'sticky',top:'100px'}}>
           <div style={{display:'inline-flex',alignItems:'center',gap:6,background:'var(--blue-xl)',border:'1px solid rgba(51,51,229,.2)',color:'var(--blue)',padding:'.35rem 1rem',borderRadius:100,fontSize:'.72rem',fontWeight:700,letterSpacing:'.08em',textTransform:'uppercase',marginBottom:'1.25rem'}}>Perguntas Frequentes</div>
           <h2 style={{fontSize:'clamp(2rem,3vw,2.8rem)',fontWeight:800,letterSpacing:'-.03em',lineHeight:1.1,marginBottom:'1rem'}}>Perguntas<br/>Frequentes</h2>
           <p style={{fontSize:'1rem',color:'var(--text-mu)',lineHeight:1.7,marginBottom:'2rem',maxWidth:320}}>Não encontrou o que procura? Fale com nosso time de consultores — estamos prontos para ajudar.</p>
@@ -565,14 +592,14 @@ function App(){
     
     {/* STATS + FEATURE CARDS SECTION */}
     <section style={{padding:'100px 5%',background:'#fff',borderTop:'1px solid var(--border)'}} id="results-s" className="rv">
-      <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:'5rem',alignItems:'flex-start',marginBottom:'5rem'}}>
+      <div className="mob-grid-1" style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:'5rem',alignItems:'flex-start',marginBottom:'5rem'}}>
         <div className="rv-l">
           <h2 style={{fontSize:'clamp(1.8rem,3vw,2.8rem)',fontWeight:800,letterSpacing:'-.03em',lineHeight:1.1,marginBottom:'1.5rem',color:'var(--text)'}}>
             Uma plataforma extensível, integrada e pronta para o crescimento do seu negócio.
           </h2>
           <p style={{fontSize:'1rem',color:'var(--text-mu)',lineHeight:1.7}}>Desenvolvida para restaurantes de todos os portes — do food truck à rede de franquias. O JiMi Food cresce com você.</p>
         </div>
-        <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:'2rem'}} className="rv-r">
+        <div className="mob-grid-2 rv-r" style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:'2rem'}}>
           {[{num:'1.200+',lbl:'Restaurantes atendidos'},{num:'99,9%',lbl:'Uptime garantido'},{num:'14',lbl:'Módulos integrados'},{num:'Zero',lbl:'Retrabalho na operação'}].map(s=>(
             <div key={s.num}>
               <div style={{fontSize:'clamp(2rem,3vw,2.8rem)',fontWeight:800,letterSpacing:'-.04em',color:'var(--blue)',lineHeight:1}}>{s.num}</div>
@@ -582,7 +609,7 @@ function App(){
         </div>
       </div>
       {/* 3 FEATURE CARDS */}
-      <div style={{display:'grid',gridTemplateColumns:'repeat(3,1fr)',gap:'1.5rem'}}>
+      <div className="mob-grid-1" style={{display:'grid',gridTemplateColumns:'repeat(3,1fr)',gap:'1.5rem'}}>
         {[
           {img:'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&h=380&fit=crop&auto=format&q=80',title:'PDV & Caixa Integrado',desc:'Sistema completo de ponto de venda com múltiplas formas de pagamento, emissão fiscal e controle de caixa em tempo real.'},
           {img:'https://images.unsplash.com/photo-1526367790999-0150786686a2?w=600&h=380&fit=crop&auto=format&q=80',title:'Delivery & iFood Unificado',desc:'Gerencie todos os pedidos de delivery em um só painel. iFood, WhatsApp, cardápio digital — tudo integrado.'},
@@ -611,9 +638,9 @@ function App(){
     </section>
 
     {/* INTEGRATIONS HUB - Blue Section */}
-    <section style={{background:'#1A1A6E',padding:'100px 5%',position:'relative',overflow:'hidden'}}>
+    <section className="sec-integ" style={{background:'#1A1A6E',padding:'100px 5%',position:'relative',overflow:'hidden'}}>
       <div style={{position:'absolute',inset:0,background:'radial-gradient(ellipse 80% 80% at 60% 50%,rgba(51,51,229,.5) 0%,transparent 70%)',pointerEvents:'none'}}/>
-      <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:'5rem',alignItems:'center',position:'relative',zIndex:2}}>
+      <div className="mob-grid-1" style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:'5rem',alignItems:'center',position:'relative',zIndex:2}}>
         <div className="rv-l">
           <div style={{display:'inline-flex',alignItems:'center',gap:6,background:'rgba(255,255,255,.12)',border:'1px solid rgba(255,255,255,.2)',color:'rgba(255,255,255,.9)',padding:'.35rem 1rem',borderRadius:100,fontSize:'.72rem',fontWeight:700,letterSpacing:'.08em',textTransform:'uppercase',marginBottom:'1.5rem'}}>Integrações</div>
           <h2 style={{fontSize:'clamp(2rem,3.5vw,3rem)',fontWeight:800,letterSpacing:'-.04em',lineHeight:1.1,color:'#fff',marginBottom:'1rem'}}>Integra com tudo que você já usa</h2>
@@ -624,7 +651,7 @@ function App(){
           </button>
         </div>
         {/* Radial Hub */}
-        <div className="rv-r" style={{display:'flex',alignItems:'center',justifyContent:'center',minHeight:380,position:'relative'}}>
+        <div className="rv-r mob-hide" style={{display:'flex',alignItems:'center',justifyContent:'center',minHeight:380,position:'relative'}}>
           {/* Hub center */}
           <div style={{width:90,height:90,borderRadius:22,background:'var(--blue)',display:'flex',alignItems:'center',justifyContent:'center',boxShadow:'0 0 60px rgba(51,51,229,.6)',position:'absolute',zIndex:3}}>
             <img src={window.LOGO_B64} alt="JiMi" style={{height:40,borderRadius:8}}/>
@@ -669,8 +696,8 @@ function App(){
 
 
     {/* TESTIMONIAL / VIDEO SECTION */}
-    <section style={{padding:'100px 5%',background:'var(--bg)',borderTop:'1px solid var(--border)'}} id="clientes-s">
-      <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:'5rem',alignItems:'center',marginBottom:'4rem'}}>
+    <section className="sec-test" style={{padding:'100px 5%',background:'var(--bg)',borderTop:'1px solid var(--border)'}} id="clientes-s">
+      <div className="mob-grid-1" style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:'5rem',alignItems:'center',marginBottom:'4rem'}}>
         <div className="rv-l">
           <div style={{display:'inline-flex',alignItems:'center',gap:6,background:'var(--blue-xl)',border:'1px solid rgba(51,51,229,.2)',color:'var(--blue)',padding:'.35rem 1rem',borderRadius:100,fontSize:'.72rem',fontWeight:700,letterSpacing:'.08em',textTransform:'uppercase',marginBottom:'1.25rem'}}>Uma tendência nacional</div>
           <h2 style={{fontSize:'clamp(2rem,3.5vw,3rem)',fontWeight:800,letterSpacing:'-.03em',lineHeight:1.1,marginBottom:'1rem'}}>Quem usa, <span style={{color:'var(--blue)'}}>aprova!</span></h2>
@@ -865,8 +892,8 @@ function App(){
     )}
 
     {/* FOOTER */}
-    <footer style={{background:'#0D0D2B',padding:'60px 5% 30px',borderTop:'none'}}>
-      <div style={{display:'grid',gridTemplateColumns:'1.5fr 1fr 1fr 1fr',gap:'3rem',marginBottom:'3rem'}}>
+    <footer className="sec-footer" style={{background:'#0D0D2B',padding:'60px 5% 30px',borderTop:'none'}}>
+      <div className="mob-grid-footer" style={{display:'grid',gridTemplateColumns:'1.5fr 1fr 1fr 1fr',gap:'3rem',marginBottom:'3rem'}}>
         <div>
           <img src={window.LOGO_B64} alt="JiMi food" style={{height:34,borderRadius:7,marginBottom:'1.25rem',display:'block'}}/>
           <p style={{fontSize:'.875rem',color:'rgba(255,255,255,.5)',lineHeight:1.7,maxWidth:260,marginBottom:'1.5rem'}}>O hub completo para restaurantes crescerem. Mais controle, mais agilidade, mais lucro.</p>
