@@ -75,6 +75,26 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(-
 .footer{border-top:1px solid var(--border);padding:1.5rem 5%;text-align:center;}
 .footer p{font-size:.75rem;color:var(--text-mu);}
 
+/* TERMS MODAL */
+.modal-ov{display:none;position:fixed;inset:0;background:rgba(10,10,26,.65);backdrop-filter:blur(6px);z-index:900;align-items:center;justify-content:center;padding:1.25rem;}
+.modal-ov.open{display:flex;}
+.modal-box{background:#fff;border-radius:20px;width:100%;max-width:580px;max-height:88vh;display:flex;flex-direction:column;box-shadow:0 40px 100px rgba(10,10,40,.28);overflow:hidden;}
+.modal-header{padding:1.75rem 2rem 1.25rem;border-bottom:1px solid var(--border);flex-shrink:0;}
+.modal-header-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:.25rem;}
+.modal-eyebrow{font-size:.65rem;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:var(--blue);}
+.modal-close-btn{width:32px;height:32px;border-radius:50%;border:none;background:var(--bg);cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--text-mu);font-size:1rem;transition:background .15s;flex-shrink:0;}
+.modal-close-btn:hover{background:var(--border);}
+.modal-title{font-size:1.4rem;font-weight:800;letter-spacing:-.03em;color:var(--text);}
+.modal-body{padding:1.5rem 2rem;overflow-y:auto;flex:1;}
+.modal-body p{font-size:.9rem;color:var(--text-m);line-height:1.75;margin-bottom:1rem;}
+.modal-body p:last-child{margin-bottom:0;}
+.modal-body .highlight{background:var(--blue-xl);border-left:3px solid var(--blue);padding:.875rem 1rem;border-radius:0 8px 8px 0;margin:1.25rem 0;}
+.modal-body .highlight p{margin-bottom:.4rem;color:var(--text);font-weight:500;}
+.modal-body .highlight p:last-child{margin-bottom:0;}
+.modal-footer-bar{padding:1.25rem 2rem;border-top:1px solid var(--border);flex-shrink:0;display:flex;justify-content:flex-end;}
+.btn-ok{background:var(--blue);color:#fff;border:none;padding:.875rem 2.5rem;border-radius:10px;font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:.95rem;cursor:pointer;box-shadow:0 4px 20px rgba(51,51,229,.3);transition:all .2s;}
+.btn-ok:hover{background:var(--blue-l);transform:translateY(-1px);}
+
 /* MOBILE */
 @media(max-width:768px){
   .nav-links{display:none;}
@@ -82,6 +102,8 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(-
   .main{padding:40px 5% 60px;}
   .download-card{flex-direction:column;align-items:flex-start;gap:1rem;}
   .hero-strip{padding:36px 5% 40px;}
+  .modal-box{max-height:92vh;}
+  .modal-header,.modal-body,.modal-footer-bar{padding-left:1.25rem;padding-right:1.25rem;}
 }
 </style>
 </head>
@@ -97,7 +119,6 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(-
     <li><a href="/#sol-s">Soluções</a></li>
     <li><a href="/#cta-s">Contato</a></li>
     <li><a href="/area-do-cliente.html" class="active">Área do Cliente</a></li>
-
   </ul>
   <div class="nav-r">
     <a href="/" class="btn-home">← Voltar ao Site</a>
@@ -133,10 +154,10 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(-
         <h2>Termos de Uso</h2>
         <p>Política de Regulamento Interno para Utilização do JiMi Food. Leia os termos antes de utilizar o sistema.</p>
       </div>
-      <a href="#" class="btn-terms">
+      <button class="btn-terms" onclick="openTerms()">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
         Ver Termos de Uso
-      </a>
+      </button>
       <div class="info-divider"></div>
       <div class="info-contact">
         <div style="font-size:.8rem;font-weight:700;color:rgba(255,255,255,.4);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.25rem;">Precisa de ajuda?</div>
@@ -203,6 +224,25 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(-
           </a>
         </div>
 
+        <!-- AnyDesk -->
+        <div class="download-card">
+          <div class="download-card-left">
+            <div class="download-icon" style="background:#FFF5F0;">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#E55A00" stroke-width="1.8" width="26" height="26">
+                <path d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+              </svg>
+            </div>
+            <div>
+              <div class="download-title">Download do AnyDesk</div>
+              <div class="download-desc">Acesso remoto alternativo para suporte</div>
+            </div>
+          </div>
+          <a href="https://anydesk.com/pt/downloads/thank-you?dv=win_exe" target="_blank" rel="noopener noreferrer" class="btn-download">
+            <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 100 20A10 10 0 0012 2zm1 13.586V7a1 1 0 00-2 0v8.586l-2.293-2.293a1 1 0 00-1.414 1.414l4 4a1 1 0 001.414 0l4-4a1 1 0 00-1.414-1.414L13 15.586z"/></svg>
+            Clique Aqui Para Baixar
+          </a>
+        </div>
+
         <!-- Agille Conect -->
         <div class="download-card">
           <div class="download-card-left">
@@ -232,6 +272,40 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(-
 <footer class="footer">
   <p>JiMi Food 2026 | Área do Cliente | CNPJ: 13.470.201/0001-02</p>
 </footer>
+
+<!-- TERMS MODAL -->
+<div class="modal-ov" id="termsModal" onclick="if(event.target===this)closeTerms()">
+  <div class="modal-box">
+    <div class="modal-header">
+      <div class="modal-header-top">
+        <span class="modal-eyebrow">Documento Oficial</span>
+        <button class="modal-close-btn" onclick="closeTerms()">✕</button>
+      </div>
+      <div class="modal-title">Termos de Uso</div>
+    </div>
+    <div class="modal-body">
+      <p>Política de regulamento interno para utilização do <strong>JIMI ROBÔ</strong></p>
+      <p>A partir do dia <strong>01/05/2024</strong>, todos os clientes que utilizam o JIMI ROBÔ deverão adquirir um contrato de suporte mensal ou anual, conforme estabelecido em nosso contrato de compra e venda. Este contrato inclui suporte técnico <strong>7 dias por semana</strong> e o serviço de armazenamento de dados na nuvem no Servidor DATA CENTER.</p>
+      <div class="highlight">
+        <p>Os valores para o suporte são os seguintes:</p>
+        <p>– <strong>Anual:</strong> R$ 290,00 (Podendo ser pago em 12x no boleto)</p>
+        <p>Para suporte avulso, o valor será de <strong>R$ 120,00</strong> por cada atendimento.</p>
+      </div>
+      <p>É importante ressaltar que o suporte é <strong>gratuito durante o período de garantia de 12 meses</strong> do JIMI ROBÔ. Após esse período, será necessária a contratação do suporte conforme os valores mencionados acima.</p>
+      <p>Agradecemos desde já a compreensão e colaboração de todos os clientes do JIMI ROBÔ.</p>
+      <p style="margin-top:1.5rem;font-style:italic;color:var(--text-mu);">Atenciosamente,<br><strong style="color:var(--text);font-style:normal;">Diretoria JIMI ROBÔ | Agille</strong></p>
+    </div>
+    <div class="modal-footer-bar">
+      <button class="btn-ok" onclick="closeTerms()">Li e entendi — OK</button>
+    </div>
+  </div>
+</div>
+
+<script>
+function openTerms(){document.getElementById('termsModal').classList.add('open');document.body.style.overflow='hidden';}
+function closeTerms(){document.getElementById('termsModal').classList.remove('open');document.body.style.overflow='';}
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeTerms();});
+</script>
 
 </body>
 </html>
