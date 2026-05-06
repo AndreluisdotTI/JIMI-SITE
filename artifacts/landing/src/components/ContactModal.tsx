@@ -26,6 +26,7 @@ const REVENUE_OPTIONS = [
 ];
 
 const WA_NUMBER = "5561996299003";
+const WA_SUPPORT_NUMBER = "5561998663000";
 
 function buildWhatsAppMessage(
   type: "contact" | "support",
@@ -108,14 +109,15 @@ export function ContactModal({ onClose, type }: ContactModalProps) {
     }
     const rawDigits = phone.replace(/\D/g, "");
     const msg = buildWhatsAppMessage(type, profile, pdv, revenue, rawDigits);
-    const url = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`;
+    const number = type === "support" ? WA_SUPPORT_NUMBER : WA_NUMBER;
+    const url = `https://wa.me/${number}?text=${encodeURIComponent(msg)}`;
     window.open(url, "_blank");
     onClose();
   }
 
   function handleSupportDirect() {
     const msg = `Olá! Já sou cliente JiMi Food e preciso de suporte. Meu WhatsApp para contato: ${phone.replace(/\D/g, "")}`;
-    const url = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`;
+    const url = `https://wa.me/${WA_SUPPORT_NUMBER}?text=${encodeURIComponent(msg)}`;
     window.open(url, "_blank");
     onClose();
   }

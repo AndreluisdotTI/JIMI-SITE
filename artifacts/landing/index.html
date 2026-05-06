@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>JiMi food — O Hub Completo para Restaurantes</title>
+<title>JiMi food, O Hub Completo para Restaurantes</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,700;1,800&display=swap" rel="stylesheet">
 <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
@@ -335,18 +335,18 @@ const {useState,useEffect,useRef}=React;
 const TWEAK_DEFAULTS=/*EDITMODE-BEGIN*/{"accent":"blue"}/*EDITMODE-END*/;
 const SOLUTIONS=[
   {num:"01",cat:"Sistema de Gestão",title:"PDV Completo e Inteligente",desc:"Sistema de ponto de venda desenvolvido para operações de alta demanda. Controle total de vendas, múltiplas formas de pagamento, sangria de caixa e emissão de cupom fiscal integrada.",bullets:["Registro ágil de vendas e pedidos","Múltiplas formas de pagamento","Impressão de cupom fiscal integrada","Relatórios financeiros em tempo real"]},
-  {num:"02",cat:"Automação",title:"Jimi Robô Totalmente Integrado",desc:"O atendente do JiMi Food opera 24 horas por dia, recebe pedidos automaticamente e os envia direto para a produção — sem erros humanos, sem tempo de espera.",bullets:["Atendimento automático sem intervenção","Integração direta com a produção","Redução drástica de erros operacionais","Funciona 24 horas por dia"]},
+  {num:"02",cat:"Automação",title:"Jimi Robô Totalmente Integrado",desc:"O atendente do JiMi Food opera 24 horas por dia, recebe pedidos automaticamente e os envia direto para a produção, sem erros humanos, sem tempo de espera.",bullets:["Atendimento automático sem intervenção","Integração direta com a produção","Redução drástica de erros operacionais","Funciona 24 horas por dia"]},
   {num:"03",cat:"Autoatendimento",title:"Totens que Aumentam seu Ticket Médio",desc:"Clientes navegam pelo cardápio com autonomia, descobrem combos e itens adicionais sem pressa. O resultado é menos fila e mais conversão por atendimento.",bullets:["Interface intuitiva e visual com fotos","Combos sugeridos automaticamente","Aumento comprovado do ticket médio","Redução de filas e tempo de espera"]},
   {num:"04",cat:"Controle de Acesso",title:"Catracas para Mais Controle e Segurança",desc:"Controle quem entra no seu restaurante com catracas integradas ao sistema. Rastreabilidade total de clientes, dados de fluxo e segurança operacional.",bullets:["Controle de entrada e saída em tempo real","Integração com o sistema de pedidos","Dados de fluxo de clientes por período","Barreira física integrada ao digital"]},
-  {num:"05",cat:"Segurança Patrimonial",title:"Antenas Antifurto Integradas",desc:"Sistema antifurto integrado ao ecossistema JiMi Food. Alertas automáticos, proteção do patrimônio e rastreamento — sem interromper a experiência do cliente.",bullets:["Alertas automáticos em tempo real","Integração com catracas e câmeras","Redução significativa de perdas","Operação silenciosa e discreta"]},
-  {num:"06",cat:"Operação de Salão",title:"Comandas Eletrônicas e Impressão Automática",desc:"Elimine o papel e os erros de comanda. Pedidos feitos eletronicamente são impressos na estação correta de produção — sem redigitação, sem ruído no salão.",bullets:["Impressão automática na cozinha","Zero redigitação de pedidos","Histórico completo de comandas por mesa","Controle de mesas em tempo real"]},
-  {num:"07",cat:"Buffet & Self-Service",title:"Balança Integrada ao Sistema",desc:"Cobrança precisa por peso conectada diretamente ao PDV. Ideal para restaurantes por quilo e buffets — sem divergências de valor, sem perda de receita.",bullets:["Pesagem e cobrança totalmente automáticas","Integração direta com o caixa (PDV)","Elimina divergências e erros de valor","Relatórios de consumo por peso e período"]},
+  {num:"05",cat:"Segurança Patrimonial",title:"Antenas Antifurto Integradas",desc:"Sistema antifurto integrado ao ecossistema JiMi Food. Alertas automáticos, proteção do patrimônio e rastreamento, sem interromper a experiência do cliente.",bullets:["Alertas automáticos em tempo real","Integração com catracas e câmeras","Redução significativa de perdas","Operação silenciosa e discreta"]},
+  {num:"06",cat:"Operação de Salão",title:"Comandas Eletrônicas e Impressão Automática",desc:"Elimine o papel e os erros de comanda. Pedidos feitos eletronicamente são impressos na estação correta de produção, sem redigitação, sem ruído no salão.",bullets:["Impressão automática na cozinha","Zero redigitação de pedidos","Histórico completo de comandas por mesa","Controle de mesas em tempo real"]},
+  {num:"07",cat:"Buffet & Self-Service",title:"Balança Integrada ao Sistema",desc:"Cobrança precisa por peso conectada diretamente ao PDV. Ideal para restaurantes por quilo e buffets, sem divergências de valor, sem perda de receita.",bullets:["Pesagem e cobrança totalmente automáticas","Integração direta com o caixa (PDV)","Elimina divergências e erros de valor","Relatórios de consumo por peso e período"]},
   {num:"08",cat:"Identificação & Checkout",title:"Leitores de Código de Barras e RFID",desc:"Agilize o checkout com leitura de código de barras e tecnologia RFID. Identifique produtos e clientes com precisão e velocidade, reduzindo o tempo médio de atendimento.",bullets:["Leitura de código de barras e QR Code","Identificação de clientes via RFID","Integração com fidelização do cliente","Checkout significativamente mais rápido"]},
-  {num:"09",cat:"Produção & Cozinha",title:"Impressoras Conectadas Direto na Produção",desc:"Cada pedido chega impresso na estação correta — chapa, bebidas, sobremesa, sushi. A cozinha trabalha no ritmo certo, sem esperas e sem erros de roteamento.",bullets:["Impressão automática por estação","Roteamento inteligente de pedidos","Múltiplas impressoras simultâneas","Integração total com PDV e comandas"]},
-  {num:"10",cat:"Atendimento de Mesa",title:"Aplicativo de Garçom para Android",desc:"Garçons fazem pedidos diretamente pelo aplicativo no celular ou tablet. O pedido vai automaticamente para a cozinha — sem sair da mesa, sem esperar.",bullets:["Pedidos feitos na mesa via app","Envio automático para produção","Controle de status de cada pedido","Interface simples, rápida e intuitiva"]},
-  {num:"11",cat:"Pagamento",title:"Pedidos pelas Maquininhas Stone e Maquinona Ifood",desc:"Receba pedidos e pagamentos diretamente pelas maquininhas Stone e Maquinona iFood. Tudo integrado ao sistema — zero duplicidade, zero retrabalho.",bullets:["Integração nativa com Stone e Maquinona","Pedidos e pagamentos unificados no PDV","Conciliação financeira automática","Suporte a múltiplas bandeiras de cartão"]},
+  {num:"09",cat:"Produção & Cozinha",title:"Impressoras Conectadas Direto na Produção",desc:"Cada pedido chega impresso na estação correta, chapa, bebidas, sobremesa, sushi. A cozinha trabalha no ritmo certo, sem esperas e sem erros de roteamento.",bullets:["Impressão automática por estação","Roteamento inteligente de pedidos","Múltiplas impressoras simultâneas","Integração total com PDV e comandas"]},
+  {num:"10",cat:"Atendimento de Mesa",title:"Aplicativo de Garçom para Android",desc:"Garçons fazem pedidos diretamente pelo aplicativo no celular ou tablet. O pedido vai automaticamente para a cozinha, sem sair da mesa, sem esperar.",bullets:["Pedidos feitos na mesa via app","Envio automático para produção","Controle de status de cada pedido","Interface simples, rápida e intuitiva"]},
+  {num:"11",cat:"Pagamento",title:"Pedidos pelas Maquininhas Stone e Maquinona Ifood",desc:"Receba pedidos e pagamentos diretamente pelas maquininhas Stone e Maquinona iFood. Tudo integrado ao sistema, zero duplicidade, zero retrabalho.",bullets:["Integração nativa com Stone e Maquinona","Pedidos e pagamentos unificados no PDV","Conciliação financeira automática","Suporte a múltiplas bandeiras de cartão"]},
   {num:"12",cat:"Delivery",title:"Integração Completa com iFood",desc:"Gerencie todos os pedidos do iFood em um único painel. Sem precisar trocar de sistema, sem perder pedido, sem duplicidade de operação.",bullets:["Painel único para todos os canais","Atualização de status automática e integrada","Sincronização de cardápio e preços","Relatórios consolidados de todos os canais"]},
-  {num:"13",cat:"Delivery",title:"Pedido Meu Food",desc:"Cardápio digital completo com pedidos via WhatsApp Bot, QR Code e link compartilhável. Mais vendas, sem esforço — atendimento rápido, menos erros e integração total com delivery.",bullets:["WhatsApp Bot integrado ao pedido","Cardápio via QR Code ou link direto","Atendimento mais rápido, menos erros","Integração completa com delivery"]},
+  {num:"13",cat:"Delivery",title:"Pedido Meu Food",desc:"Cardápio digital completo com pedidos via WhatsApp Bot, QR Code e link compartilhável. Mais vendas, sem esforço, atendimento rápido, menos erros e integração total com delivery.",bullets:["WhatsApp Bot integrado ao pedido","Cardápio via QR Code ou link direto","Atendimento mais rápido, menos erros","Integração completa com delivery"]},
   {num:"14",cat:"Fidelização & Recorrência",title:"Sistema de Fidelização de Clientes",desc:"Programe pontos, recompensas e campanhas automáticas. Aumente a frequência de visitas e o valor de vida do cliente com fidelização integrada ao PDV e ao app.",bullets:["Programa de pontos por compra no PDV","Campanhas automáticas de retorno e recompensa","Histórico completo de cada cliente","Relatórios de recorrência e LTV"]},
 ];
 
@@ -355,8 +355,8 @@ function FaqSection() {
   const [open, setOpen] = React.useState(null);
   const faqs = [
     {q:'O JiMi Food funciona para qualquer tipo de restaurante?',a:'Sim. O JiMi Food é desenvolvido para restaurantes de todos os portes e modelos: fast food, restaurante à la carte, buffet por quilo, self-service, food truck, sorveterias, padarias e redes de franquias. Cada módulo pode ser ativado conforme a necessidade do negócio.'},
-    {q:'É necessário trocar todo o sistema que já uso?',a:'Não necessariamente. O JiMi Food foi desenhado para se integrar ao que você já utiliza — maquininhas Stone, iFood, WhatsApp Business — sem necessidade de substituir tudo de uma vez. A implantação é feita de forma gradual e assistida pela nossa equipe.'},
-    {q:'Como funciona a integração com o iFood?',a:'O JiMi Food possui integração nativa com o iFood. Os pedidos chegam automaticamente ao painel do sistema, são roteados para a produção correta e o status é atualizado em tempo real — sem precisar trocar de tela ou redigitar nada.'},
+    {q:'É necessário trocar todo o sistema que já uso?',a:'Não necessariamente. O JiMi Food foi desenhado para se integrar ao que você já utiliza, maquininhas Stone, iFood, WhatsApp Business, sem necessidade de substituir tudo de uma vez. A implantação é feita de forma gradual e assistida pela nossa equipe.'},
+    {q:'Como funciona a integração com o iFood?',a:'O JiMi Food possui integração nativa com o iFood. Os pedidos chegam automaticamente ao painel do sistema, são roteados para a produção correta e o status é atualizado em tempo real, sem precisar trocar de tela ou redigitar nada.'},
     {q:'Qual é o prazo de implantação?',a:'O prazo médio de implantação é de 3 a 7 dias úteis, dependendo do porte do restaurante e dos módulos contratados. Nossa equipe acompanha todo o processo de configuração, treinamento e ativação.'},
     {q:'O sistema funciona offline?',a:'Sim. O PDV possui modo offline que garante o funcionamento da operação mesmo em caso de queda de internet. Os dados são sincronizados automaticamente quando a conexão é restabelecida.'},
     {q:'Como é feito o suporte técnico?',a:'O suporte é feito via WhatsApp, telefone e acesso remoto, com atendimento em horário comercial e plantão para emergências. Clientes com contratos avançados têm acesso a suporte prioritário 24/7.'},
@@ -368,7 +368,7 @@ function FaqSection() {
         <div className="mob-static rv-l" style={{position:'sticky',top:'100px'}}>
           <div style={{display:'inline-flex',alignItems:'center',gap:6,background:'var(--blue-xl)',border:'1px solid rgba(51,51,229,.2)',color:'var(--blue)',padding:'.35rem 1rem',borderRadius:100,fontSize:'.72rem',fontWeight:700,letterSpacing:'.08em',textTransform:'uppercase',marginBottom:'1.25rem'}}>Perguntas Frequentes</div>
           <h2 style={{fontSize:'clamp(2rem,3vw,2.8rem)',fontWeight:800,letterSpacing:'-.03em',lineHeight:1.1,marginBottom:'1rem'}}>Perguntas<br/>Frequentes</h2>
-          <p style={{fontSize:'1rem',color:'var(--text-mu)',lineHeight:1.7,marginBottom:'2rem',maxWidth:320}}>Não encontrou o que procura? Fale com nosso time de consultores — estamos prontos para ajudar.</p>
+          <p style={{fontSize:'1rem',color:'var(--text-mu)',lineHeight:1.7,marginBottom:'2rem',maxWidth:320}}>Não encontrou o que procura? Fale com nosso time de consultores, estamos prontos para ajudar.</p>
           <button style={{background:'var(--blue)',color:'#fff',border:'none',padding:'.875rem 1.75rem',borderRadius:10,fontFamily:"'Plus Jakarta Sans',sans-serif",fontWeight:700,fontSize:'.95rem',cursor:'pointer',boxShadow:'0 4px 20px rgba(51,51,229,.3)',transition:'all .2s'}}
             onMouseEnter={e=>e.currentTarget.style.transform='translateY(-2px)'}
             onMouseLeave={e=>e.currentTarget.style.transform='translateY(0)'}>
@@ -480,7 +480,7 @@ function App(){
         <h1>Menos fila.<br/><span>Mais sabor.</span><br/>Mais controle.</h1>
       </div>
       <div className="hero-body rv">
-        <p className="hero-sub">O JiMi Food centraliza toda a operação do seu restaurante em um único ecossistema — do pedido à produção, do caixa à fidelização. Tudo integrado, tudo automático.</p>
+        <p className="hero-sub">O JiMi Food centraliza toda a operação do seu restaurante em um único ecossistema, do pedido à produção, do caixa à fidelização. Tudo integrado, tudo automático.</p>
         <div className="hero-ctas">
           <button className="btn-hero-green" onClick={()=>setModalOpen(true)}>Quero uma Demonstração</button>
           <button className="btn-wh-out" onClick={()=>scroll('sol-s')}>Conhecer as Soluções →</button>
@@ -505,10 +505,10 @@ function App(){
       <div className="rv" style={{marginBottom:'3rem'}}>
         <div style={{display:'inline-flex',alignItems:'center',gap:6,background:'var(--blue-xl)',border:'1px solid rgba(51,51,229,.2)',color:'var(--blue)',padding:'.35rem 1rem',borderRadius:100,fontSize:'.72rem',fontWeight:700,letterSpacing:'.08em',textTransform:'uppercase',marginBottom:'1.25rem'}}>Ecossistema Completo</div>
         <h2 style={{fontSize:'clamp(2rem,3.5vw,3rem)',fontWeight:800,letterSpacing:'-.03em',lineHeight:1.1,marginBottom:'1rem'}}>Veja o JiMi Food em ação</h2>
-        <p style={{fontSize:'1.05rem',color:'var(--text-mu)',maxWidth:560,margin:'0 auto',lineHeight:1.7}}>Um ecossistema completo de hardware e software — tudo integrado, tudo sincronizado em tempo real.</p>
+        <p style={{fontSize:'1.05rem',color:'var(--text-mu)',maxWidth:560,margin:'0 auto',lineHeight:1.7}}>Um ecossistema completo de hardware e software, tudo integrado, tudo sincronizado em tempo real.</p>
       </div>
       <div className="rv d1" style={{maxWidth:960,margin:'0 auto',borderRadius:24,overflow:'hidden',boxShadow:'0 24px 80px rgba(51,51,229,.15)',border:'1px solid var(--border)'}}>
-        <img src="/jimi-product.png" alt="JiMi Food — Ecossistema completo" style={{width:'100%',display:'block'}}/>
+        <img src="/jimi-product.png" alt="JiMi Food, Ecossistema completo" style={{width:'100%',display:'block'}}/>
       </div>
       <div className="rv d2" style={{display:'flex',gap:'2.5rem',justifyContent:'center',marginTop:'2.5rem',flexWrap:'wrap'}}>
         {['PDV + Maquininha','App Android','Monitor de Gestão','Cardápio Digital','iFood + WhatsApp + 99Food'].map(item=>(
@@ -534,7 +534,7 @@ function App(){
           Soluções Integradas
         </div>
         <h2 style={{fontSize:'clamp(2rem,3.5vw,3rem)',fontWeight:800,letterSpacing:'-.03em',lineHeight:1.1,marginBottom:'1rem'}}>Tudo que seu restaurante precisa, tudo se comunicando</h2>
-        <p style={{fontSize:'1.05rem',color:'var(--text-mu)',lineHeight:1.7,maxWidth:520}}>Com o JiMi Food você tem um ecossistema completo — cada módulo conversa com os outros em tempo real, sem sistemas separados, sem planilhas, sem retrabalho.</p>
+        <p style={{fontSize:'1.05rem',color:'var(--text-mu)',lineHeight:1.7,maxWidth:520}}>Com o JiMi Food você tem um ecossistema completo, cada módulo conversa com os outros em tempo real, sem sistemas separados, sem planilhas, sem retrabalho.</p>
       </div>
       <div className="sol-count-grid rv-r">
         {SOLUTIONS.map(s=>(
@@ -578,9 +578,9 @@ function App(){
     <section className="how-sec" id="how-s" data-dot="2">
       <div className="how-eyebrow rv"><div className="hero-dot" style={{background:'rgba(255,255,255,.7)'}}/>Fluxo Automático</div>
       <h2 className="rv d1">Do pedido à produção,<br/>sem intervenção manual</h2>
-      <p className="sub rv d2">O JiMi Food conecta cada etapa em um fluxo contínuo — sem ruído, sem retrabalho, sem espera.</p>
+      <p className="sub rv d2">O JiMi Food conecta cada etapa em um fluxo contínuo, sem ruído, sem retrabalho, sem espera.</p>
       <div className="how-cards">
-        {[{n:'01',t:'Pedido Realizado',d:'Cliente faz o pedido via totem, garçom, app, iFood ou maquininha. Todos os canais unificados em um único painel de gestão.'},{n:'02',t:'Direcionamento Automático',d:'O sistema roteia o pedido para a estação correta de produção e registra o pagamento — sem redigitação, sem grito, sem erro.'},{n:'03',t:'Controle em Tempo Real',d:'Gestão completa: estoque, caixa, fidelização e relatórios em um só painel. Acesse de qualquer dispositivo, em qualquer lugar.'}].map((s,i)=>(
+        {[{n:'01',t:'Pedido Realizado',d:'Cliente faz o pedido via totem, garçom, app, iFood ou maquininha. Todos os canais unificados em um único painel de gestão.'},{n:'02',t:'Direcionamento Automático',d:'O sistema roteia o pedido para a estação correta de produção e registra o pagamento, sem redigitação, sem grito, sem erro.'},{n:'03',t:'Controle em Tempo Real',d:'Gestão completa: estoque, caixa, fidelização e relatórios em um só painel. Acesse de qualquer dispositivo, em qualquer lugar.'}].map((s,i)=>(
           <div className={`how-card rv d${i+1}`} key={s.n}>
             <div className="how-card-n">{s.n}</div>
             <h3>{s.t}</h3>
@@ -598,7 +598,7 @@ function App(){
           <h2 style={{fontSize:'clamp(1.8rem,3vw,2.8rem)',fontWeight:800,letterSpacing:'-.03em',lineHeight:1.1,marginBottom:'1.5rem',color:'var(--text)'}}>
             Uma plataforma extensível, integrada e pronta para o crescimento do seu negócio.
           </h2>
-          <p style={{fontSize:'1rem',color:'var(--text-mu)',lineHeight:1.7}}>Desenvolvida para restaurantes de todos os portes — do food truck à rede de franquias. O JiMi Food cresce com você.</p>
+          <p style={{fontSize:'1rem',color:'var(--text-mu)',lineHeight:1.7}}>Desenvolvida para restaurantes de todos os portes, do food truck à rede de franquias. O JiMi Food cresce com você.</p>
         </div>
         <div className="mob-grid-2 rv-r" style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:'2rem'}}>
           {[{num:'1.200+',lbl:'Restaurantes atendidos'},{num:'99,9%',lbl:'Uptime garantido'},{num:'14',lbl:'Módulos integrados'},{num:'Zero',lbl:'Retrabalho na operação'}].map(s=>(
@@ -613,7 +613,7 @@ function App(){
       <div className="mob-grid-1" style={{display:'grid',gridTemplateColumns:'repeat(3,1fr)',gap:'1.5rem'}}>
         {[
           {img:'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&h=380&fit=crop&auto=format&q=80',title:'PDV & Caixa Integrado',desc:'Sistema completo de ponto de venda com múltiplas formas de pagamento, emissão fiscal e controle de caixa em tempo real.'},
-          {img:'https://images.unsplash.com/photo-1526367790999-0150786686a2?w=600&h=380&fit=crop&auto=format&q=80',title:'Delivery & iFood Unificado',desc:'Gerencie todos os pedidos de delivery em um só painel. iFood, WhatsApp, cardápio digital — tudo integrado.'},
+          {img:'https://images.unsplash.com/photo-1526367790999-0150786686a2?w=600&h=380&fit=crop&auto=format&q=80',title:'Delivery & iFood Unificado',desc:'Gerencie todos os pedidos de delivery em um só painel. iFood, WhatsApp, cardápio digital, tudo integrado.'},
           {img:'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&h=380&fit=crop&auto=format&q=80',title:'Atendimento Ágil de Mesa',desc:'App de garçom, comandas eletrônicas e totens de autoatendimento que reduzem filas e aumentam o ticket médio.'},
         ].map((c,i)=>(
           <div key={i} style={{background:'var(--bg)',border:'1px solid var(--border)',borderRadius:20,overflow:'hidden',transition:'box-shadow .2s,transform .2s',cursor:'default'}}
@@ -645,7 +645,7 @@ function App(){
         <div className="rv-l">
           <div style={{display:'inline-flex',alignItems:'center',gap:6,background:'rgba(255,255,255,.12)',border:'1px solid rgba(255,255,255,.2)',color:'rgba(255,255,255,.9)',padding:'.35rem 1rem',borderRadius:100,fontSize:'.72rem',fontWeight:700,letterSpacing:'.08em',textTransform:'uppercase',marginBottom:'1.5rem'}}>Integrações</div>
           <h2 style={{fontSize:'clamp(2rem,3.5vw,3rem)',fontWeight:800,letterSpacing:'-.04em',lineHeight:1.1,color:'#fff',marginBottom:'1rem'}}>Integra com tudo que você já usa</h2>
-          <p style={{fontSize:'1.05rem',color:'rgba(255,255,255,.65)',lineHeight:1.7,marginBottom:'2rem',maxWidth:420}}>O JiMi Food se conecta nativamente às principais plataformas de delivery, pagamento e comunicação — sem configuração complexa.</p>
+          <p style={{fontSize:'1.05rem',color:'rgba(255,255,255,.65)',lineHeight:1.7,marginBottom:'2rem',maxWidth:420}}>O JiMi Food se conecta nativamente às principais plataformas de delivery, pagamento e comunicação, sem configuração complexa.</p>
           <button className="btn-wh" style={{padding:'.875rem 1.75rem',borderRadius:10,background:'#fff',color:'var(--blue)',border:'none',fontFamily:"'Plus Jakarta Sans',sans-serif",fontWeight:700,fontSize:'1rem',cursor:'pointer',transition:'all .2s'}}
             onClick={()=>{}}>
             Ver todas as integrações →
@@ -707,13 +707,13 @@ function App(){
         <div className="rv-l">
           <div style={{display:'inline-flex',alignItems:'center',gap:6,background:'var(--blue-xl)',border:'1px solid rgba(51,51,229,.2)',color:'var(--blue)',padding:'.35rem 1rem',borderRadius:100,fontSize:'.72rem',fontWeight:700,letterSpacing:'.08em',textTransform:'uppercase',marginBottom:'1.25rem'}}>Uma tendência nacional</div>
           <h2 style={{fontSize:'clamp(2rem,3.5vw,3rem)',fontWeight:800,letterSpacing:'-.03em',lineHeight:1.1,marginBottom:'1rem'}}>Quem usa, <span style={{color:'var(--blue)'}}>aprova!</span></h2>
-          <p style={{fontSize:'1.05rem',color:'var(--text-mu)',lineHeight:1.7,maxWidth:460}}>Milhares de restaurantes, sorveterias, casas de açaí e até mesmo padarias já utilizam o JiMi Food para automatizar toda a operação — do atendimento à gestão.</p>
+          <p style={{fontSize:'1.05rem',color:'var(--text-mu)',lineHeight:1.7,maxWidth:460}}>Milhares de restaurantes, sorveterias, casas de açaí e até mesmo padarias já utilizam o JiMi Food para automatizar toda a operação, do atendimento à gestão.</p>
         </div>
         <div className="rv-r">
           <div style={{borderRadius:20,overflow:'hidden',boxShadow:'0 20px 60px rgba(51,51,229,.18)',border:'1px solid var(--border)',background:'#000',aspectRatio:'16/9',position:'relative'}}>
             <iframe
               src="https://www.youtube.com/embed/4iIgEMJAPsk?rel=0&modestbranding=1"
-              title="JiMi Robô — Depoimento de quem usa"
+              title="JiMi Robô, Depoimento de quem usa"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
               style={{width:'100%',height:'100%',border:'none',position:'absolute',inset:0}}
@@ -761,7 +761,7 @@ function App(){
       <div className="rv-l">
         <div className="sup-eyebrow">Suporte humanizado</div>
         <h2>Suporte de Qualidade,<br/>Sempre ao seu lado</h2>
-        <p>Equipe especializada pronta para te ajudar em cada etapa — da implantação ao dia a dia da operação.</p>
+        <p>Equipe especializada pronta para te ajudar em cada etapa, da implantação ao dia a dia da operação.</p>
         <div className="sup-items">
           {[
             {icon:'💬',title:'Atendimento via WhatsApp',desc:'Tire dúvidas e resolva problemas em tempo real pelo WhatsApp.'},
@@ -943,7 +943,7 @@ function App(){
           CNPJ: 13.470.201/0001-02
         </p>
         <p style={{fontSize:'.75rem',color:'rgba(255,255,255,.3)',lineHeight:1.7,textAlign:'center'}}>
-          Rua das Figueiras, Quadra 101, Lote 07 — Edifício Vista Shopping, 1º Andar, Lojas 56 a 59<br/>
+          Rua das Figueiras, Quadra 101, Lote 07, Edifício Vista Shopping, 1º Andar, Lojas 56 a 59<br/>
           Águas Claras, Brasília/DF, 71906-750
         </p>
         <p style={{fontSize:'.75rem',color:'rgba(255,255,255,.25)'}}>
