@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Área do Cliente — JiMi food</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,700;1,800&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --blue:#3333E5;--blue-d:#2020C0;--blue-l:#5555EE;
+  --blue-xl:#EEEEFA;--blue-xxl:#F7F7FD;
+  --text:#0A0A1A;--text-m:#3A3A5C;--text-mu:#6B6B8A;
+  --border:#E2E2F0;--white:#FFF;--bg:#FAFAFE;
+}
+html{scroll-behavior:smooth;overflow-x:hidden;}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased;min-height:100vh;}
+
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:200;height:72px;display:flex;align-items:center;padding:0 5%;background:rgba(255,255,255,0.97);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);box-shadow:0 2px 20px rgba(10,10,26,.05);}
+.nav-logo img{height:34px;border-radius:7px;display:block;}
+.nav-links{display:flex;gap:2rem;list-style:none;margin-left:3rem;}
+.nav-links a{font-size:.875rem;font-weight:500;color:var(--text-m);text-decoration:none;transition:color .2s;}
+.nav-links a:hover,.nav-links a.active{color:var(--blue);}
+.nav-links a.active{font-weight:700;}
+.nav-r{margin-left:auto;display:flex;gap:.875rem;align-items:center;}
+.btn-bl{background:var(--blue);color:#fff;border:none;padding:.6rem 1.4rem;border-radius:8px;font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:.875rem;cursor:pointer;transition:all .2s;box-shadow:0 4px 20px rgba(51,51,229,.3);text-decoration:none;display:inline-flex;align-items:center;}
+.btn-bl:hover{background:var(--blue-l);transform:translateY(-1px);}
+.btn-home{border:1.5px solid var(--border);background:transparent;color:var(--text-m);padding:.55rem 1.25rem;border-radius:8px;font-family:'Plus Jakarta Sans',sans-serif;font-weight:600;font-size:.875rem;cursor:pointer;transition:all .2s;text-decoration:none;display:inline-flex;align-items:center;}
+.btn-home:hover{border-color:var(--blue);color:var(--blue);}
+
+/* HERO STRIP */
+.hero-strip{margin-top:72px;background:var(--blue);padding:48px 5% 52px;position:relative;overflow:hidden;}
+.hero-strip::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 120% at 80% 50%,rgba(255,255,255,.06) 0%,transparent 60%),radial-gradient(ellipse 60% 80% at -10% 50%,rgba(255,255,255,.04) 0%,transparent 60%);pointer-events:none;}
+.hero-strip-inner{position:relative;z-index:1;max-width:900px;}
+.hero-strip .eyebrow{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);color:rgba(255,255,255,.9);padding:.3rem .875rem;border-radius:100px;font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:1rem;}
+.hero-strip h1{font-size:clamp(2rem,4vw,3rem);font-weight:800;letter-spacing:-.04em;color:#fff;line-height:1.1;margin-bottom:.625rem;}
+.hero-strip p{font-size:1rem;color:rgba(255,255,255,.7);line-height:1.6;max-width:500px;}
+
+/* MAIN CONTENT */
+.main{padding:56px 5% 80px;}
+.content-grid{display:grid;grid-template-columns:1fr 1.5fr;gap:2.5rem;max-width:1100px;margin:0 auto;align-items:start;}
+
+/* LEFT CARD — Info / Termos */
+.info-card{background:#1E1E3F;border-radius:20px;padding:2.5rem 2rem;color:#fff;display:flex;flex-direction:column;gap:1.5rem;}
+.info-card-icon{width:56px;height:56px;border-radius:14px;background:rgba(255,255,255,.12);display:flex;align-items:center;justify-content:center;}
+.info-card-icon svg{width:28px;height:28px;stroke:#fff;fill:none;stroke-width:1.8;}
+.info-card h2{font-size:1.75rem;font-weight:800;letter-spacing:-.04em;line-height:1.1;color:#fff;}
+.info-card p{font-size:.9rem;color:rgba(255,255,255,.6);line-height:1.65;}
+.btn-terms{display:inline-flex;align-items:center;gap:.5rem;background:var(--blue);color:#fff;border:none;padding:.875rem 1.5rem;border-radius:10px;font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:.9rem;cursor:pointer;text-decoration:none;transition:all .2s;box-shadow:0 4px 20px rgba(51,51,229,.35);}
+.btn-terms:hover{background:var(--blue-l);transform:translateY(-2px);box-shadow:0 8px 30px rgba(51,51,229,.45);}
+.info-divider{height:1px;background:rgba(255,255,255,.1);}
+.info-contact{display:flex;flex-direction:column;gap:.625rem;}
+.info-contact-item{display:flex;align-items:center;gap:.625rem;font-size:.83rem;color:rgba(255,255,255,.55);}
+.info-contact-item strong{color:rgba(255,255,255,.85);font-weight:600;}
+
+/* RIGHT — DOWNLOADS */
+.downloads{display:flex;flex-direction:column;gap:1.25rem;}
+.download-card{background:#fff;border:1.5px solid var(--border);border-radius:16px;padding:1.75rem 2rem;display:flex;align-items:center;justify-content:space-between;gap:1.5rem;transition:all .25s;cursor:default;}
+.download-card:hover{border-color:var(--blue);box-shadow:0 8px 32px rgba(51,51,229,.1);transform:translateY(-2px);}
+.download-card-left{display:flex;align-items:center;gap:1.25rem;}
+.download-icon{width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.download-icon svg{width:26px;height:26px;}
+.download-title{font-size:1.1rem;font-weight:800;letter-spacing:-.02em;color:var(--text);margin-bottom:.2rem;}
+.download-desc{font-size:.82rem;color:var(--text-mu);font-weight:500;line-height:1.4;}
+.btn-download{display:inline-flex;align-items:center;gap:.5rem;background:var(--blue);color:#fff;border:none;padding:.7rem 1.375rem;border-radius:9px;font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:.875rem;cursor:pointer;text-decoration:none;transition:all .2s;white-space:nowrap;box-shadow:0 4px 16px rgba(51,51,229,.28);}
+.btn-download:hover{background:var(--blue-l);box-shadow:0 6px 24px rgba(51,51,229,.4);}
+.btn-download svg{width:16px;height:16px;fill:#fff;}
+
+/* SECTION LABEL */
+.sec-label{font-size:.65rem;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:var(--blue);margin-bottom:1rem;}
+
+/* FOOTER */
+.footer{border-top:1px solid var(--border);padding:1.5rem 5%;text-align:center;}
+.footer p{font-size:.75rem;color:var(--text-mu);}
+
+/* MOBILE */
+@media(max-width:768px){
+  .nav-links{display:none;}
+  .content-grid{grid-template-columns:1fr;gap:2rem;}
+  .main{padding:40px 5% 60px;}
+  .download-card{flex-direction:column;align-items:flex-start;gap:1rem;}
+  .hero-strip{padding:36px 5% 40px;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="/" style="text-decoration:none;">
+    <div class="nav-logo"><img src="/jimi-logo-new.png" alt="JiMi food"></div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="/">Home</a></li>
+    <li><a href="/#sol-s">Soluções</a></li>
+    <li><a href="/#cta-s">Contato</a></li>
+    <li><a href="/area-do-cliente.html" class="active">Área do Cliente</a></li>
+  </ul>
+  <div class="nav-r">
+    <a href="/" class="btn-home">← Voltar ao Site</a>
+    <a href="https://wa.me/5561996299003?text=Olá!%20Preciso%20de%20suporte%20técnico." target="_blank" rel="noopener noreferrer" class="btn-bl">
+      <svg viewBox="0 0 24 24" fill="white" width="16" height="16" style="margin-right:.35rem"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.553 4.116 1.52 5.843L.057 23.143a.75.75 0 00.9.9l5.3-1.463A11.938 11.938 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.75a9.716 9.716 0 01-5.107-1.446l-.364-.217-3.135.865.843-3.138-.237-.374A9.75 9.75 0 012.25 12C2.25 6.615 6.615 2.25 12 2.25S21.75 6.615 21.75 12 17.385 21.75 12 21.75z"/></svg>
+      Suporte
+    </a>
+  </div>
+</nav>
+
+<!-- HERO STRIP -->
+<div class="hero-strip">
+  <div class="hero-strip-inner">
+    <div class="eyebrow">
+      <span style="width:6px;height:6px;border-radius:50%;background:#fff;display:inline-block;"></span>
+      Portal exclusivo para clientes
+    </div>
+    <h1>Área do Cliente</h1>
+    <p>Acesse downloads, ferramentas de suporte e recursos exclusivos para clientes JiMi Food.</p>
+  </div>
+</div>
+
+<!-- MAIN -->
+<main class="main">
+  <div class="content-grid">
+
+    <!-- LEFT: Info Card -->
+    <div class="info-card">
+      <div class="info-card-icon">
+        <svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+      </div>
+      <div>
+        <h2>Termos de Uso</h2>
+        <p>Política de Regulamento Interno para Utilização do JiMi Food. Leia os termos antes de utilizar o sistema.</p>
+      </div>
+      <a href="#" class="btn-terms">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+        Ver Termos de Uso
+      </a>
+      <div class="info-divider"></div>
+      <div class="info-contact">
+        <div style="font-size:.8rem;font-weight:700;color:rgba(255,255,255,.4);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.25rem;">Precisa de ajuda?</div>
+        <div class="info-contact-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+          <span><strong>WhatsApp:</strong> (61) 9 9629-9003</span>
+        </div>
+        <div class="info-contact-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          <span><strong>Horário:</strong> Seg–Sex, 8h–18h</span>
+        </div>
+        <div class="info-contact-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+          <span><strong>Emergências:</strong> Plantão 24/7</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT: Downloads -->
+    <div>
+      <div class="sec-label">Downloads e Ferramentas</div>
+      <div class="downloads">
+
+        <!-- App -->
+        <div class="download-card">
+          <div class="download-card-left">
+            <div class="download-icon" style="background:#EEF0FF;">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#3333E5" stroke-width="1.8" width="26" height="26">
+                <rect x="5" y="2" width="14" height="20" rx="2" ry="2"/>
+                <line x1="12" y1="18" x2="12.01" y2="18"/>
+              </svg>
+            </div>
+            <div>
+              <div class="download-title">Download do App</div>
+              <div class="download-desc">Aplicativo JiMi Food para gestão mobile</div>
+            </div>
+          </div>
+          <a href="https://abrir.link/AgilleAPP" target="_blank" rel="noopener noreferrer" class="btn-download">
+            <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 100 20A10 10 0 0012 2zm1 13.586V7a1 1 0 00-2 0v8.586l-2.293-2.293a1 1 0 00-1.414 1.414l4 4a1 1 0 001.414 0l4-4a1 1 0 00-1.414-1.414L13 15.586z"/></svg>
+            Clique Aqui Para Baixar
+          </a>
+        </div>
+
+        <!-- TeamViewer -->
+        <div class="download-card">
+          <div class="download-card-left">
+            <div class="download-icon" style="background:#FFF0F0;">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#E53333" stroke-width="1.8" width="26" height="26">
+                <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+                <line x1="8" y1="21" x2="16" y2="21"/>
+                <line x1="12" y1="17" x2="12" y2="21"/>
+                <circle cx="12" cy="10" r="3"/>
+                <path d="M7 10h1M16 10h1"/>
+              </svg>
+            </div>
+            <div>
+              <div class="download-title">Download do TeamViewer</div>
+              <div class="download-desc">Acesso remoto para suporte técnico</div>
+            </div>
+          </div>
+          <a href="https://download.teamviewer.com/download/version_12x/TeamViewer_Setup.exe" target="_blank" rel="noopener noreferrer" class="btn-download">
+            <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 100 20A10 10 0 0012 2zm1 13.586V7a1 1 0 00-2 0v8.586l-2.293-2.293a1 1 0 00-1.414 1.414l4 4a1 1 0 001.414 0l4-4a1 1 0 00-1.414-1.414L13 15.586z"/></svg>
+            Clique Aqui Para Baixar
+          </a>
+        </div>
+
+        <!-- Agille Conect -->
+        <div class="download-card">
+          <div class="download-card-left">
+            <div class="download-icon" style="background:#F0FFF4;">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="1.8" width="26" height="26">
+                <path d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18"/>
+              </svg>
+            </div>
+            <div>
+              <div class="download-title">Download do Agille Conect</div>
+              <div class="download-desc">Ferramenta de conexão e integração remota</div>
+            </div>
+          </div>
+          <a href="https://khelpdesk.com.br/downloads/clientes/AgilleConnectInstalador.exe" target="_blank" rel="noopener noreferrer" class="btn-download">
+            <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 100 20A10 10 0 0012 2zm1 13.586V7a1 1 0 00-2 0v8.586l-2.293-2.293a1 1 0 00-1.414 1.414l4 4a1 1 0 001.414 0l4-4a1 1 0 00-1.414-1.414L13 15.586z"/></svg>
+            Clique Aqui Para Baixar
+          </a>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <p>JiMi Food 2026 | Área do Cliente | CNPJ: 13.470.201/0001-02</p>
+</footer>
+
+</body>
+</html>
