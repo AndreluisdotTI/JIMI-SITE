@@ -25,7 +25,7 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--white);color:va
 /* NAV */
 .nav{position:fixed;top:0;left:0;right:0;z-index:200;height:72px;display:flex;align-items:center;padding:0 5%;background:rgba(255,255,255,0.94);backdrop-filter:blur(20px);border-bottom:1px solid transparent;transition:border-color .3s,box-shadow .3s;}
 .nav.scrolled{border-bottom-color:var(--border);box-shadow:0 2px 20px rgba(10,10,26,.06);}
-.nav-logo img{height:48px;border-radius:7px;display:block;}
+.nav-logo img{height:62px;border-radius:7px;display:block;}
 .nav-links{display:flex;gap:2rem;list-style:none;margin-left:3rem;}
 .nav-links a{font-size:.875rem;font-weight:500;color:var(--text-m);text-decoration:none;transition:color .2s;}
 .nav-links a:hover{color:var(--blue);}
@@ -933,11 +933,11 @@ function App(){
           </div>
         </div>
       </div>
-      <div style={{borderTop:'1px solid rgba(255,255,255,.08)',paddingTop:'1.5rem',textAlign:'center'}}>
-        <p style={{fontSize:'.78rem',color:'rgba(255,255,255,.35)',marginBottom:'.4rem'}}>
+      <div style={{borderTop:'1px solid rgba(255,255,255,.08)',paddingTop:'1.5rem',textAlign:'center',width:'100%',display:'flex',flexDirection:'column',alignItems:'center',gap:'.35rem'}}>
+        <p style={{fontSize:'.78rem',color:'rgba(255,255,255,.35)'}}>
           CNPJ: 13.470.201/0001-02
         </p>
-        <p style={{fontSize:'.75rem',color:'rgba(255,255,255,.3)',marginBottom:'.4rem',lineHeight:1.6}}>
+        <p style={{fontSize:'.75rem',color:'rgba(255,255,255,.3)',lineHeight:1.7,textAlign:'center'}}>
           Rua das Figueiras, Quadra 101, Lote 07 — Edifício Vista Shopping, 1º Andar, Lojas 56 a 59<br/>
           Águas Claras, Brasília/DF, 71906-750
         </p>
