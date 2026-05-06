@@ -652,26 +652,31 @@ function App(){
           </button>
         </div>
         {/* Radial Hub */}
-        <div className="rv-r mob-hide" style={{display:'flex',alignItems:'center',justifyContent:'center',minHeight:380,position:'relative'}}>
+        <div className="rv-r mob-hide" style={{display:'flex',alignItems:'center',justifyContent:'center',minHeight:650,position:'relative'}}>
           {/* Hub center */}
           <div style={{width:90,height:90,borderRadius:22,background:'var(--blue)',display:'flex',alignItems:'center',justifyContent:'center',boxShadow:'0 0 60px rgba(51,51,229,.6)',position:'absolute',zIndex:3}}>
             <img src={window.LOGO_B64} alt="JiMi" style={{height:40,borderRadius:8}}/>
           </div>
           {/* Rings */}
-          {[160,240].map((r,ri)=>(
-            <div key={r} style={{position:'absolute',width:r*2,height:r*2,borderRadius:'50%',border:'1px dashed rgba(255,255,255,.12)',animation:`spin${ri===1?'rev':''} ${ri===0?18:28}s linear infinite`}}/>
+          {[120,210,295].map((r,ri)=>(
+            <div key={r} style={{position:'absolute',width:r*2,height:r*2,borderRadius:'50%',border:'1px dashed rgba(255,255,255,.12)',animation:`${ri===1?'spinrev':'spin'} ${ri===0?15:ri===1?22:32}s linear infinite`}}/>
           ))}
-          {/* Integration nodes */}
+          {/* Integration nodes - all 14 solutions */}
           {[
-            {label:'iFood',color:'#EA1D2C',r:160,angle:-60},
-            {label:'Stone',color:'#00A868',r:160,angle:0},
-            {label:'WhatsApp',color:'#25D366',r:160,angle:60},
-            {label:'Android',color:'#3DDC84',r:160,angle:120},
-            {label:'Maquinona',color:'#FF5A1F',r:160,angle:180},
-            {label:'99Food',color:'#FFCC00',r:160,angle:240},
-            {label:'ChatGPT',color:'#74AA9C',r:240,angle:-30},
-            {label:'RFID',color:'#6366F1',r:240,angle:90},
-            {label:'Fiscal',color:'#8B5CF6',r:240,angle:210},
+            {label:'PDV',color:'#3B82F6',r:120,angle:0},
+            {label:'Robô JiMi',color:'#6366F1',r:120,angle:72},
+            {label:'Totens',color:'#8B5CF6',r:120,angle:144},
+            {label:'Catracas',color:'#EC4899',r:120,angle:216},
+            {label:'Caixa',color:'#F59E0B',r:120,angle:288},
+            {label:'Comandas',color:'#10B981',r:210,angle:36},
+            {label:'Balança',color:'#14B8A6',r:210,angle:108},
+            {label:'Leitor RFID',color:'#7C3AED',r:210,angle:180},
+            {label:'Impressoras',color:'#F97316',r:210,angle:252},
+            {label:'App Garçom',color:'#3DDC84',r:210,angle:324},
+            {label:'Maquininhas',color:'#00A868',r:295,angle:0},
+            {label:'iFood',color:'#EA1D2C',r:295,angle:90},
+            {label:'Cardápio',color:'#0EA5E9',r:295,angle:180},
+            {label:'Fidelização',color:'#E11D48',r:295,angle:270},
           ].map((node,i)=>{
             const rad=(node.angle-90)*Math.PI/180;
             const x=Math.cos(rad)*node.r;
