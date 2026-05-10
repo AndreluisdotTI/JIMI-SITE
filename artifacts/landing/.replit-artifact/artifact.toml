@@ -23,8 +23,8 @@ publicDir = "artifacts/landing/dist/public"
 serve = "static"
 
 [[services.production.rewrites]]
-from = "/area-do-cliente.html"
-to = "/area-do-cliente.html"
+from = "/area-do-cliente"
+to = "/area-do-cliente/index.html"
 
 [[services.production.rewrites]]
 from = "/*"
