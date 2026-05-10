@@ -1,0 +1,13 @@
+{
+  "buildCommand": "pnpm --filter @workspace/landing run build",
+  "outputDirectory": "artifacts/landing/dist/public",
+  "installCommand": "pnpm install",
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "rewrites": [
+    {
+      "source": "/((?!area-do-cliente(?:/|$)).*)",
+      "destination": "/index.html"
+    }
+  ]
+}
