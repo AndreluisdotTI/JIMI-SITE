@@ -1,7 +1,7 @@
 {
-  "buildCommand": "pnpm --filter @workspace/landing run build",
+  "buildCommand": "pnpm run typecheck:libs && pnpm --filter @workspace/landing run build",
   "outputDirectory": "artifacts/landing/dist/public",
-  "installCommand": "pnpm install",
+  "installCommand": "pnpm install --frozen-lockfile",
   "cleanUrls": true,
   "trailingSlash": false,
   "rewrites": [
