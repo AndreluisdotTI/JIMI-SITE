@@ -20,7 +20,7 @@ const PDV_OPTIONS = [
 ];
 
 const REVENUE_OPTIONS = [
-  { label: "Até R$ 30.000,00", value: "disqualified_revenue" },
+  { label: "Até R$ 30.000,00", value: "baixo" },
   { label: "De R$ 30.000,00 a R$ 80.000,00", value: "medio" },
   { label: "Acima de R$ 80.000,00", value: "alto" },
 ];
@@ -76,11 +76,6 @@ export function ContactModal({ onClose, type }: ContactModalProps) {
   }
 
   function handleRevenueSelect(value: string) {
-    if (value === "disqualified_revenue") {
-      setDisqualified(true);
-      setDisqualifiedReason("revenue");
-      return;
-    }
     setRevenue(value);
     setStep(4);
   }
@@ -255,10 +250,7 @@ function StepRevenue({ onSelect, onBack }: { onSelect: (v: string) => void; onBa
           <button
             key={opt.value}
             onClick={() => onSelect(opt.value)}
-            className={`w-full text-left px-4 py-3 rounded-xl border-2 font-medium transition-all text-sm
-              ${opt.value === "disqualified_revenue"
-                ? "border-gray-200 text-gray-400 hover:border-gray-300 hover:bg-gray-50"
-                : "border-orange-100 text-gray-700 hover:border-orange-400 hover:bg-orange-50"}`}
+            className="w-full text-left px-4 py-3 rounded-xl border-2 border-orange-100 text-gray-700 font-medium hover:border-orange-400 hover:bg-orange-50 transition-all text-sm"
           >
             {opt.label}
           </button>
